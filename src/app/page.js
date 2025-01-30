@@ -1,11 +1,14 @@
-import React from 'react'
-import Hero from '@/app/components/hero';
+// import Hero from '@/app/components/hero';
+import NextMatch from '@/app/components/nextmatch';
+import News from '@/app/components/news';
 const page = () => {
   return (
     <div>
-      <Hero/>
+      {/* <Hero/> */}
+      <NextMatch/>
+      <News/>
     </div>
   )
 }
 
-export default page
+export default page;
