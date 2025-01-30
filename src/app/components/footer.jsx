@@ -27,33 +27,33 @@ const Footer = () => {
 
   return (
     <div>
-      <footer className="bg-black w-full upside animate-fade-in font-montserrat">
+      <footer className="bg-black foot w-full upside animate-fade-in font-montserrat">
         <div className="mx-auto w-full max-w-screen-xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-6 py-10 lg:py-12">
             {/* About Section */}
             <div className="footer-section">
               <h2 className="mb-6 text-sm font-semibold text-yellow-400 uppercase tracking-wide">
-                About Azaiki Art Gallery
+                About Global Sport International
               </h2>
               <ul className="text-white font-medium space-y-3">
                 <li>
                   <a href="#" className="hover:text-yellow-400 transition">
-                    Our Story
+                    Our Mission
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-yellow-400 transition">
-                    Exhibitions
+                    Football News
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-yellow-400 transition">
-                    Museum Collections
+                    Player Highlights
                   </a>
                 </li>
                 <li>
                   <a href="#" className="hover:text-yellow-400 transition">
-                    Visit Us
+                    Upcoming Matches
                   </a>
                 </li>
               </ul>
@@ -62,7 +62,7 @@ const Footer = () => {
             {/* Connect Section */}
             <div className="footer-section">
               <h2 className="mb-6 text-sm font-semibold text-yellow-400 uppercase tracking-wide">
-                Connect with Us
+                Follow Us
               </h2>
               <ul className="text-white font-medium space-y-3">
                 <li>
@@ -118,8 +118,7 @@ const Footer = () => {
                 Stay Updated
               </h2>
               <p className="text-white font-medium mb-4">
-                Subscribe to our newsletter for the latest exhibitions, events,
-                and more.
+                Subscribe for the latest football news, match updates, and exclusive content.
               </p>
               <form>
                 <input
@@ -139,7 +138,7 @@ const Footer = () => {
 
           {/* Footer Bottom */}
           <div className="py-6 text-center text-white text-sm">
-            <p>&copy; 2025 Azaiki Art Gallery & Museum. All Rights Reserved.</p>
+            <p>&copy; 2025 Global Sport International. All Rights Reserved.</p>
           </div>
         </div>
       </footer>
