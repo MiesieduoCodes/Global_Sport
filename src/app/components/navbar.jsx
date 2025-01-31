@@ -1,141 +1,106 @@
 "use client";
-import { useState, useEffect } from 'react';
-import Link from 'next/link'; // Import Link for client-side routing
-import Image from 'next/image';
+import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState("light");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
+  const menuRef = useRef(null);
 
-  // Change navbar background color on scroll
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Toggle dark/light theme
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
-    document.body.classList.toggle('dark', theme === 'light');
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    document.body.classList.toggle("dark", theme === "light");
   };
 
-  // Handle Language change (you can expand this logic with actual language switching)
   const handleLanguageChange = (e) => {
-    console.log('Language changed to:', e.target.value); // Placeholder
+    console.log("Language changed to:", e.target.value);
+  };
+
+  const toggleDropdown = (menu) => {
+    setOpenDropdown(openDropdown === menu ? null : menu);
   };
 
   return (
-    <nav
-      className={`fixed w-full p-4 flex justify-between items-center transition-all ease-in-out duration-300 ${
-        isScrolled ? 'bg-blue-600 shadow-lg' : 'bg-transparent'
-      }`}
-    >
-      <div className="flex items-center space-x-4">
-        <div className="flex items-center space-x-2">
-          <Image
-            src="/images/WhatsApp Image 2025-01-29 at 18.17.18_0b547839.jpg"
-            alt="Team 2 Logo"
-            width={70}
-            height={70}
-          />
-          <span className="text-white font-semibold text-xl">Global Sports</span>
+    <div className={`navbar ${isScrolled ? "bg-blue-600 shadow-lg" : "bg-base-100"}`}>
+      <div className="navbar-start">
+        <div className="dropdown">
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="btn btn-ghost lg:hidden"
+          >
+            {isMenuOpen ? "✖" : "☰"}
+          </button>
+          {isMenuOpen && (
+            <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+              <li>
+                <Link href="/">Home</Link>
+              </li>
+              {[ 
+                { title: "Sports", links: ["Football", "Basketball", "Tennis"] },
+                { title: "Events", links: ["Olympics", "World Cup", "Champions League"] },
+                { title: "News", links: ["Latest News", "Scores", "Player Stats"] },
+                { title: "Football", links: ["Join Team", "Join Academy", "Training Sessions", "Merchandise"] }
+              ].map((menu, index) => (
+                <li key={index}>
+                  <details>
+                    <summary>{menu.title}</summary>
+                    <ul className="p-2">
+                      {menu.links.map((link, i) => (
+                        <li key={i}>
+                          <Link href={`/${link.toLowerCase().replace(" ", "-")}`}>{link}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
+        <a className="btn btn-ghost text-xl">Global Sports</a>
+      </div>
 
-        {/* Main navigation links */}
-        <ul
-          className={`flex space-x-6 items-center transition-all ease-in-out duration-300 ${
-            isMenuOpen
-              ? 'flex-col absolute bg-blue-600 sm:flex sm:relative sm:static w-full sm:w-auto'
-              : 'hidden sm:flex'
-          }`}
-        >
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">
           <li>
-            <Link href="/" className="text-white hover:text-yellow-300 px-4 py-2 transition-colors duration-200">
-              Home
-            </Link>
+            <Link href="/">Home</Link>
           </li>
-          <li className="relative group">
-            <button className="text-white hover:text-yellow-300 px-4 py-2 transition-colors duration-200">
-              Sports
-            </button>
-            <ul className="absolute left-0 hidden mt-2 space-y-2 bg-blue-600 text-white group-hover:block transition-all duration-200">
-              <li>
-                <Link href="/football" className="block px-4 py-2">
-                  Football
-                </Link>
-              </li>
-              <li>
-                <Link href="/basketball" className="block px-4 py-2">
-                  Basketball
-                </Link>
-              </li>
-              <li>
-                <Link href="/tennis" className="block px-4 py-2">
-                  Tennis
-                </Link>
-              </li>
-            </ul>
-          </li>
-          <li className="relative group">
-            <button className="text-white hover:text-yellow-300 px-4 py-2 transition-colors duration-200">
-              Events
-            </button>
-            <ul className="absolute left-0 hidden mt-2 space-y-2 bg-blue-600 text-white group-hover:block transition-all duration-200">
-              <li>
-                <Link href="/olympics" className="block px-4 py-2">
-                  Olympics
-                </Link>
-              </li>
-              <li>
-                <Link href="/world-cup" className="block px-4 py-2">
-                  World Cup
-                </Link>
-              </li>
-              <li>
-                <Link href="/champions-league" className="block px-4 py-2">
-                  Champions League
-                </Link>
-              </li>
-            </ul>
-          </li>
-          <li className="relative group">
-            <button className="text-white hover:text-yellow-300 px-4 py-2 transition-colors duration-200">
-              News
-            </button>
-            <ul className="absolute left-0 hidden mt-2 space-y-2 bg-blue-600 text-white group-hover:block transition-all duration-200">
-              <li>
-                <Link href="/latest-news" className="block px-4 py-2">
-                  Latest News
-                </Link>
-              </li>
-              <li>
-                <Link href="/scores" className="block px-4 py-2">
-                  Scores
-                </Link>
-              </li>
-              <li>
-                <Link href="/player-stats" className="block px-4 py-2">
-                  Player Stats
-                </Link>
-              </li>
-            </ul>
-          </li>
+          {[ 
+            { title: "Sports", links: ["Football", "Basketball", "Tennis"] },
+            { title: "Events", links: ["Olympics", "World Cup", "Champions League"] },
+            { title: "News", links: ["Latest News", "Scores", "Player Stats"] },
+            { title: "Football", links: ["Join Team", "Join Academy", "Training Sessions", "Merchandise"] }
+          ].map((menu, index) => (
+            <li key={index}>
+              <details>
+                <summary>{menu.title}</summary>
+                <ul className="p-2">
+                  {menu.links.map((link, i) => (
+                    <li key={i}>
+                      <Link href={`/${link.toLowerCase().replace(" ", "-")}`}>{link}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </details>
+            </li>
+          ))}
         </ul>
       </div>
 
-      {/* Controls for Language, Theme and Mobile menu */}
-      <div className="flex items-center space-x-4">
-        {/* Language Selector */}
+      <div className="navbar-end flex items-center space-x-4">
         <select
-          className="bg-transparent text-white border border-white rounded px-2 py-1"
+          className="bg-transparent text-black border border-black rounded px-2 py-1"
           onChange={handleLanguageChange}
           aria-label="Language selector"
         >
@@ -144,22 +109,13 @@ export default function Navbar() {
           <option value="fr">FR</option>
         </select>
 
-        {/* Light/Dark Toggle */}
         <button
           onClick={toggleTheme}
-          className="text-white p-2 bg-transparent border border-white rounded transition-all duration-200"
+          className="text-black p-2 bg-transparent border border-black rounded transition-all duration-200"
         >
-          {theme === 'light' ? '🌙' : '☀️'}
-        </button>
-
-        {/* Hamburger for Mobile */}
-        <button
-          className="sm:hidden text-white p-2"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          ☰
+          {theme === "light" ? "🌙" : "☀️"}
         </button>
       </div>
-    </nav>
+    </div>
   );
 }

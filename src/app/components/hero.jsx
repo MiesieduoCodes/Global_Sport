@@ -1,71 +1,74 @@
 "use client";
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/effect-fade";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const HeroSlider = () => {
+const Hero = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
   const slides = [
     {
-      image: "/images/football1.jpg",
-      text: "Experience the thrill of the game with the latest football news and updates.",
-      link: "/news",
+      title: "Feel the Passion of Football",
+      text: "Experience the thrill of every match, every goal, every moment.",
+      buttonText: "Join the Game",
+      bgImage:
+        "https://images.pexels.com/photos/1884574/pexels-photo-1884574.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", // Football field
     },
     {
-      image: "/images/football2.jpg",
-      text: "Get insights into player stats, transfers, and performance analysis.",
-      link: "/players",
+      title: "Legends Are Made Here",
+      text: "Follow the journey of football icons and rising stars.",
+      buttonText: "Discover More",
+      bgImage:
+        "https://images.pexels.com/photos/262524/pexels-photo-262524.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", // Football stadium
     },
     {
-      image: "/images/football3.jpg",
-      text: "Stay ahead with upcoming match schedules and exclusive content.",
-      link: "/matches",
+      title: "Every Kick Counts",
+      text: "From local pitches to world championships, football unites us all.",
+      buttonText: "Be Part of It",
+      bgImage:
+        "https://images.pexels.com/photos/50713/football-ball-sport-soccer-50713.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", // Football in motion
     },
   ];
 
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
+
+  useEffect(() => {
+    const timer = setInterval(nextSlide, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="relative w-full h-screen overflow-hidden">
-      <Swiper
-        modules={[Autoplay, EffectFade]}
-        autoplay={{ delay: 5000, disableOnInteraction: false }}
-        loop
-        effect="fade"
-        speed={1000}
-        className="w-full h-full"
-      >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index} className="relative w-full h-full flex items-center justify-center">
-            <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center p-6">
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-                className="text-center max-w-md bg-black bg-opacity-70 p-6 rounded-lg"
-              >
-                <p className="text-white text-lg sm:text-xl md:text-2xl font-semibold mb-4">{slide.text}</p>
-                <a
-                  href={slide.link}
-                  className="text-yellow-400 hover:underline text-sm sm:text-base"
-                >
-                  Learn More
-                </a>
-              </motion.div>
-            </div>
-            <motion.img
-              src={slide.image}
-              alt={`Slide ${index + 1}`}
-              className="absolute inset-0 w-full h-full object-cover"
-              initial={{ scale: 1.1 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 2, ease: "easeOut" }}
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+    <section className="relative flex justify-center items-center min-h-screen overflow-hidden">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentSlide}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${slides[currentSlide].bgImage})` }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1 }}
+        >
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+
+          {/* Sliding Text */}
+          <motion.div
+            className="absolute bottom-10 left-10 max-w-md p-6 bg-black bg-opacity-80 rounded-lg text-white"
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+          >
+            <h1 className="text-3xl md:text-4xl font-bold text-yellow-400">{slides[currentSlide].title}</h1>
+            <p className="mt-3 text-lg">{slides[currentSlide].text}</p>
+            <button className="mt-5 bg-yellow-400 text-black px-5 py-2 rounded-md font-semibold shadow-lg hover:bg-yellow-500 transition">
+              {slides[currentSlide].buttonText}
+            </button>
+          </motion.div>
+        </motion.div>
+      </AnimatePresence>
     </section>
   );
 };
 
-export default HeroSlider;
+export default Hero;

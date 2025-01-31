@@ -138,7 +138,7 @@ const Footer = () => {
 
           {/* Footer Bottom */}
           <div className="py-6 text-center text-white text-sm">
-            <p>&copy; 2025 Global Sport International. All Rights Reserved.</p>
+            <p>&copy; 2025 Global Sport Football Club. All Rights Reserved.</p>
           </div>
         </div>
       </footer>
