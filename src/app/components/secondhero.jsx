@@ -1,82 +1,45 @@
 "use client";
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
-const Hero = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const slides = [
-    {
-      title: "Welcome to Our Gallery",
-      text: "Discover the beauty of art and creativity.",
-      buttonText: "Explore Now",
-      bgImage:
-        "https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-    {
-      title: "Unleash Your Imagination",
-      text: "Step into a world where art meets innovation.",
-      buttonText: "Get Inspired",
-      bgImage:
-        "https://img.daisyui.com/images/stock/photo-1557683316-973673baf926.jpg",
-    },
-    {
-      title: "Join Our Community",
-      text: "Be a part of a vibrant artistic journey.",
-      buttonText: "Sign Up",
-      bgImage:
-        "https://images.pexels.com/photos/743986/pexels-photo-743986.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    },
-  ];
-
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
-  const prevSlide = () =>
-    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+export default function CatchUpSoccerHero() {
+  const heroContentRef = useRef(null);
 
   useEffect(() => {
-    const timer = setInterval(nextSlide, 5000);
-    return () => clearInterval(timer);
+    // GSAP animation: Fade in and slide up the hero content.
+    gsap.from(heroContentRef.current, {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power3.out",
+    });
   }, []);
 
   return (
-    <section className="relative flex justify-center items-center min-h-screen overflow-hidden">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentSlide}
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${slides[currentSlide].bgImage})` }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-black bg-opacity-70"></div>
-
-          {/* Content */}
-          <div className="relative z-10 flex flex-col justify-center items-center min-h-screen text-center px-6">
-            <motion.div
-              className="max-w-2xl p-8 rounded-lg"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1 }}
-            >
-              <h1 className="mb-5 text-5xl md:text-6xl font-extrabold text-yellow-400 drop-shadow-md">
-                {slides[currentSlide].title}
-              </h1>
-              <p className="mb-8 text-lg md:text-xl text-gray-300">
-                {slides[currentSlide].text}
-              </p>
-              <button className="btn bg-yellow-400 text-black hover:bg-yellow-500 px-6 py-3 text-lg font-semibold shadow-lg">
-                {slides[currentSlide].buttonText}
-              </button>
-            </motion.div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-
-    </section>
+    <div
+      className="hero min-h-screen"
+      style={{
+        backgroundImage:
+          "url(https://images.pexels.com/photos/41257/pexels-photo-41257.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)",
+      }}
+    >
+      <div className="hero-overlay bg-opacity-60"></div>
+      <div
+        className="hero-content text-neutral-content text-center"
+        ref={heroContentRef}
+      >
+        <div className="max-w-2xl">
+          <h1 className="mb-6 text-6xl font-bold text-blue-600">
+            Experience the Thrill of Soccer!
+          </h1>
+          <p className="mb-8 text-2xl text-black">
+            Immerse yourself in electrifying match highlights, unforgettable goals, and game-changing plays. Stay ahead of the action and never miss a beat in the world of soccer.
+          </p>
+          <button className="btn btn-primary bg-green-600 border-green-600 hover:bg-green-700 transition duration-300 text-xl py-3 px-8">
+            Watch Now
+          </button>
+        </div>
+      </div>
+    </div>
   );
-};
-
-export default Hero;
+}
