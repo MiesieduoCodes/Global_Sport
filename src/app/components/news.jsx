@@ -46,7 +46,7 @@ export default function News() {
                 From match highlights to transfer buzz – we’ve got you covered.
               </p>
               <a
-                href="#"
+                href="/news"
                 className="cursor-pointer border border-gray-700 shadow-sm rounded-full py-3.5 px-7 w-52 lg:mx-0 mx-auto flex justify-center text-gray-700 font-semibold transition-all duration-300 hover:bg-gray-200"
               >
                 View All
