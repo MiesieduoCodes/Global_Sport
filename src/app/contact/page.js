@@ -54,9 +54,9 @@ const ContactPage = () => {
           />
           <h1 className="absolute top-10 left-10 text-white text-4xl font-bold">Contact Us</h1>
           <div className="absolute bottom-0 p-6 w-full bg-white rounded-lg shadow-lg">
-            <ContactInfo icon="📞" text="470-601-1911" />
-            <ContactInfo icon="📧" text="Pagedone1234@gmail.com" />
-            <ContactInfo icon="📍" text="654 Sycamore Avenue, Meadowville, WA 76543" />
+            <ContactInfo icon="📞" text="+77273274755, +77025895922" />
+            <ContactInfo icon="📧" text="globalsportint2017@gmail.com" />
+            <ContactInfo icon="📍" text="Kazakhstan" />
           </div>
         </div>
 

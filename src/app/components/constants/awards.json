@@ -1,0 +1,33 @@
+[
+    {
+      "id": 1,
+      "name": "UEFA Champions League Trophy",
+      "imageSrc": "/images/champions-league.jpg",
+      "imageAlt": "Champions League Trophy",
+      "year": 2023,
+      "match": "Manchester City vs Inter Milan",
+      "description": "Manchester City won their first-ever UEFA Champions League title in 2023 with a 1-0 victory over Inter Milan.",
+      "howItWasWon": "Rodri scored the only goal in the final, securing the win and completing City's historic treble."
+    },
+    {
+      "id": 2,
+      "name": "FIFA World Cup Golden Boot",
+      "imageSrc": "/images/golden-boot.jpg",
+      "imageAlt": "Golden Boot Trophy",
+      "year": 2022,
+      "match": "Argentina vs France",
+      "description": "Kylian Mbappé won the Golden Boot at the 2022 FIFA World Cup for scoring 8 goals in the tournament.",
+      "howItWasWon": "Mbappé scored a hat-trick in the final against Argentina, taking his total to 8 goals, but France lost in penalties."
+    },
+    {
+      "id": 3,
+      "name": "Ballon d'Or",
+      "imageSrc": "/images/ballon-dor.jpg",
+      "imageAlt": "Ballon d'Or Trophy",
+      "year": 2023,
+      "match": "Season Performance",
+      "description": "Lionel Messi won his 8th Ballon d'Or for his outstanding performances, including winning the FIFA World Cup with Argentina.",
+      "howItWasWon": "Messi's leadership, goals, and playmaking helped Argentina win the 2022 World Cup, making him the top candidate."
+    }
+  ]
+  
