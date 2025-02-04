@@ -12,10 +12,20 @@ const ContactPage = () => {
   });
   const [isSending, setIsSending] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
+  const [serviceKey, setServiceKey] = useState({
+    userID: "a1NybmXRcYdkYXTu6",
+    serviceID: "service_mofzwum",
+    templateID: "template_ormpbz2",
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleServiceKeyChange = (e) => {
+    const { name, value } = e.target;
+    setServiceKey((prevKeys) => ({ ...prevKeys, [name]: value }));
   };
 
   const handleSubmit = (e) => {
@@ -25,10 +35,10 @@ const ContactPage = () => {
 
     emailjs
       .sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        serviceKey.serviceID,
+        serviceKey.templateID,
         e.target,
-        process.env.NEXT_PUBLIC_EMAILJS_USER_ID
+        serviceKey.userID
       )
       .then(
         () => {
@@ -62,6 +72,35 @@ const ContactPage = () => {
 
         <div className="bg-gray-50 p-8 rounded-2xl shadow-lg">
           <h2 className="text-yellow-500 text-3xl font-semibold mb-6">Send Us A Message</h2>
+          
+          {/* Service Keys Input */}
+          <div className="mb-4">
+            <input
+              type="text"
+              name="userID"
+              value={serviceKey.userID}
+              onChange={handleServiceKeyChange}
+              placeholder="EmailJS User ID"
+              className="w-full p-3 border rounded-lg mb-2"
+            />
+            <input
+              type="text"
+              name="serviceID"
+              value={serviceKey.serviceID}
+              onChange={handleServiceKeyChange}
+              placeholder="EmailJS Service ID"
+              className="w-full p-3 border rounded-lg mb-2"
+            />
+            <input
+              type="text"
+              name="templateID"
+              value={serviceKey.templateID}
+              onChange={handleServiceKeyChange}
+              placeholder="EmailJS Template ID"
+              className="w-full p-3 border rounded-lg"
+            />
+          </div>
+
           <form onSubmit={handleSubmit}>
             <FormInput name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
             <FormInput name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
