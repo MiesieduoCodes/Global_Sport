@@ -8,21 +8,24 @@ gsap.registerPlugin(ScrollTrigger);
 const Footer = () => {
   useEffect(() => {
     // Entrance animation for each section
-    gsap.fromTo(
-      ".footer-section",
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        stagger: 0.3,
-        scrollTrigger: {
-          trigger: ".footer-section",
-          start: "top 80%",
-          toggleActions: "play reverse play reverse",
-        },
-      }
-    );
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      gsap.fromTo(
+        ".footer-section",
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          stagger: 0.3,
+          scrollTrigger: {
+            trigger: ".footer-section",
+            start: "top 80%",
+            toggleActions: "play reverse play reverse",
+          },
+        }
+      );
+    }
   }, []);
 
   return (
@@ -66,7 +69,7 @@ const Footer = () => {
               </h2>
               <ul className="text-white font-medium space-y-3">
                 <li>
-                  <a href="#" className="hover:text-yellow-400 transition">
+                  <a href="https://www.instagram.com/globalsport247_/" className="hover:text-yellow-400 transition">
                     Instagram
                   </a>
                 </li>
