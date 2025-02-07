@@ -18,19 +18,19 @@ export default function NextMatch() {
   }, []);
 
   return (
-    <section className="bg-white py-6 text-center text-black">
+    <section className="bg-white py-4 text-center text-black">
       <div className="container mx-auto px-4">
         {/* Main container with 3 sections in a straight line */}
-        <div className="flex flex-col md:flex-row justify-around items-center gap-6">
+        <div className="flex md:flex-row justify-around items-center gap-8">
           {/* Section 1: Next Match Text */}
           <div ref={headerRef} className="flex-1">
-            <h2 className="text-3xl font-bold mb-4 text-blue-600">Next Match</h2>
+            <h2 className="text-3xl font-bold text-blue-600">Next Match</h2>
           </div>
 
           {/* Section 2: Teams */}
           <div ref={teamsRef} className="flex-1 flex flex-row justify-center items-center gap-6">
             {/* Team 1 */}
-            <div className="flex flex-col items-center">
+            <div className="flex items-center">
               <Image
                 src="/path-to-team1-logo.png"
                 alt="Team 1 Logo"
@@ -45,7 +45,7 @@ export default function NextMatch() {
             <div className="text-2xl font-bold text-black">VS</div>
 
             {/* Team 2 */}
-            <div className="flex flex-col items-center">
+            <div className="flex items-center">
               <Image
                 src="/path-to-team2-logo.png"
                 alt="Team 2 Logo"

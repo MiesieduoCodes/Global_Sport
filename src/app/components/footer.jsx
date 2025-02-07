@@ -7,8 +7,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
   useEffect(() => {
-    // Entrance animation for each section
-  useEffect(() => {
     if (typeof window !== "undefined") {
       gsap.fromTo(
         ".footer-section",
@@ -26,36 +24,36 @@ const Footer = () => {
         }
       );
     }
-  }, []);
+  }, []); // ✅ Corrected useEffect (removed nested useEffect)
 
   return (
     <div>
-      <footer className="bg-black foot w-full upside animate-fade-in font-montserrat">
+      <footer className="bg-indigo-900 foot w-full upside animate-fade-in font-montserrat">
         <div className="mx-auto w-full max-w-screen-xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-6 py-10 lg:py-12">
             {/* About Section */}
             <div className="footer-section">
-              <h2 className="mb-6 text-sm font-semibold text-yellow-400 uppercase tracking-wide">
+              <h2 className="mb-6 text-sm font-semibold text-yellow-400  uppercase tracking-wide">
                 About Global Sport International
               </h2>
               <ul className="text-white font-medium space-y-3">
                 <li>
-                  <a href="#" className="hover:text-yellow-400 transition">
-                    Our Mission
+                  <a href="/clubhistory" className="hover:text-yellow-400 transition">
+                    Our Story
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-yellow-400 transition">
+                  <a href="/news" className="hover:text-yellow-400 transition">
                     Football News
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-yellow-400 transition">
+                  <a href="/players" className="hover:text-yellow-400 transition">
                     Player Highlights
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-yellow-400 transition">
+                  <a href="/matches" className="hover:text-yellow-400 transition">
                     Upcoming Matches
                   </a>
                 </li>
@@ -74,13 +72,8 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-yellow-400 transition">
+                  <a href="https://facebook.com/globalsport247" className="hover:text-yellow-400 transition">
                     Facebook
-                  </a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-yellow-400 transition">
-                    Twitter
                   </a>
                 </li>
                 <li>
@@ -98,17 +91,17 @@ const Footer = () => {
               </h2>
               <ul className="text-white font-medium space-y-3">
                 <li>
-                  <a href="#" className="hover:text-yellow-400 transition">
+                  <a href="/privacy" className="hover:text-yellow-400 transition">
                     Privacy Policy
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-yellow-400 transition">
+                  <a href="/license" className="hover:text-yellow-400 transition">
                     Licensing
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-yellow-400 transition">
+                  <a href="/terms" className="hover:text-yellow-400 transition">
                     Terms &amp; Conditions
                   </a>
                 </li>
@@ -141,7 +134,9 @@ const Footer = () => {
 
           {/* Footer Bottom */}
           <div className="py-6 text-center text-white text-sm">
-            <p>&copy; 2025 Global Sport Football Club. All Rights Reserved.</p>
+            <p suppressHydrationWarning={true}>
+              &copy; {new Date().getFullYear()} Global Sport Football Club. All Rights Reserved.
+            </p>
           </div>
         </div>
       </footer>

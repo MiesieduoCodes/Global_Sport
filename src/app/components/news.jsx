@@ -32,7 +32,7 @@ export default function News() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-gray-100">
+    <section ref={sectionRef} className="py-24 bg-gray-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap lg:flex-nowrap lg:flex-row lg:justify-between gap-8">
           {/* Left Side – Section Header and Navigation Buttons */}

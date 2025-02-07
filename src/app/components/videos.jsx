@@ -14,8 +14,8 @@ export default function VideoCarousel() {
   }, []);
 
   return (
-    <div className="relative w-full overflow-hidden py-12 bg-black">
-      <h2 className="text-3xl font-bold text-yellow-400 text-center mb-6">
+    <div className="relative w-full overflow-hidden py-12 bg-white">
+      <h2 className="text-3xl font-bold text-indigo-700 text-center mb-6">
         Highlights & Replays
       </h2>
 
@@ -51,7 +51,7 @@ export default function VideoCarousel() {
               />
               
               {/* Overlay with Text and Link */}
-              <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-blue-700 via-transparent to-transparent text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div className="absolute bottom-0 left-0 w-full h-[350px] p-4 bg-gradient-to-t from-blue-700 via-transparent to-transparent text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 <a href={video.link} target="_blank" rel="noopener noreferrer" className="hover:underline">
                   {video.title}
                 </a>
