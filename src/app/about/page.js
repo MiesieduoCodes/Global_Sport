@@ -48,6 +48,12 @@ const testimonials = [
   },
 ];
 
+const legends = [
+  { name: "David Hunter", role: "Legendary Captain", img: "https://placehold.co/100x100?text=DH" },
+  { name: "Michael Rios", role: "All-Time Top Scorer", img: "https://placehold.co/100x100?text=MR" },
+  { name: "Carlos Mendes", role: "Iconic Goalkeeper", img: "https://placehold.co/100x100?text=CM" },
+];
+
 export default function JoinOurTeam() {
   useEffect(() => {
     const initializeSwiper = async () => {
@@ -120,25 +126,30 @@ export default function JoinOurTeam() {
         </dl>
       </div>
 
+      {/* Legends Section */}
+      <section className="mt-20 text-center">
+        <h2 className="text-4xl font-bold">Meet Our Legends</h2>
+        <div className="flex justify-center gap-10 mt-10">
+          {legends.map((legend) => (
+            <div key={legend.name} className="text-center">
+              <img className="w-24 h-24 rounded-full" src={legend.img} alt={legend.name} />
+              <h4 className="mt-4 font-semibold">{legend.name}</h4>
+              <p className="text-gray-600 dark:text-gray-400">{legend.role}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Testimonials */}
       <section className="mt-20">
-        <h2 className="text-center text-4xl font-bold text-black dark:text-white">
-          Fan & Player Testimonials
-        </h2>
+        <h2 className="text-center text-4xl font-bold">Fan & Player Testimonials</h2>
         <div className="swiper mySwiper mx-auto mt-10 max-w-7xl">
           <div className="swiper-wrapper">
             {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="swiper-slide bg-gray-100 dark:bg-gray-800 text-black dark:text-white p-6 rounded-xl shadow-lg transition-colors duration-300"
-              >
+              <div key={index} className="swiper-slide bg-gray-100 dark:bg-gray-800 p-6 rounded-xl shadow-lg transition-colors duration-300">
                 <p className="mb-6 text-lg">&quot;{testimonial.text}&quot;</p>
                 <div className="flex items-center gap-4">
-                  <img
-                    className="w-14 h-14 rounded-full"
-                    src={testimonial.img}
-                    alt={testimonial.name}
-                  />
+                  <img className="w-14 h-14 rounded-full" src={testimonial.img} alt={testimonial.name} />
                   <div>
                     <h5 className="font-semibold">{testimonial.name}</h5>
                     <span className="text-sm text-gray-600 dark:text-gray-400">{testimonial.role}</span>

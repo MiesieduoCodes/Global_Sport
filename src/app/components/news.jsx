@@ -1,17 +1,17 @@
 "use client";
-import { useRef, useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
-import gsap from 'gsap';
+import { useRef, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore from "swiper";
+import { Navigation, Pagination } from "swiper/modules";
+import gsap from "gsap";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 // Import the news data
-import newsData from '@/app/components/constants/news.json' assert { type: "json" };
+import newsData from "@/app/components/constants/news.json" assert { type: "json" };
 
 // Install modules
 SwiperCore.use([Navigation, Pagination]);
@@ -27,27 +27,34 @@ export default function News() {
       opacity: 0,
       y: 50,
       duration: 1,
-      ease: 'power3.out'
+      ease: "power3.out",
     });
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-gray-200">
+    <section
+      ref={sectionRef}
+      className="py-24 bg-white dark:bg-black text-black dark:text-white"
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap lg:flex-nowrap lg:flex-row lg:justify-between gap-8">
           {/* Left Side – Section Header and Navigation Buttons */}
           <div className="w-full flex flex-col justify-between lg:w-2/5">
             <div className="text-center lg:text-left">
-              <h2 className="text-4xl font-bold text-gray-700 leading-[3.25rem] mb-5">
-                Latest <span className="text-blue-600">Football News</span>
+              <h2 className="text-4xl font-bold text-black dark:text-white leading-[3.25rem] mb-5">
+                Latest{" "}
+                <span className="text-blue-600 dark:text-yellow-400">
+                  Football News
+                </span>
               </h2>
-              <p className="text-gray-700 mb-10 max-lg:max-w-xl max-lg:mx-auto">
-                Stay updated with the most exciting news from the world of football.
-                From match highlights to transfer buzz – we’ve got you covered.
+              <p className="text-gray-700 dark:text-gray-300 mb-10 max-lg:max-w-xl max-lg:mx-auto">
+                Stay updated with the most exciting news from the world of
+                football. From match highlights to transfer buzz – we’ve got you
+                covered.
               </p>
               <a
                 href="/news"
-                className="cursor-pointer border border-gray-700 shadow-sm rounded-full py-3.5 px-7 w-52 lg:mx-0 mx-auto flex justify-center text-gray-700 font-semibold transition-all duration-300 hover:bg-gray-200"
+                className="cursor-pointer border border-gray-700 dark:border-gray-300 shadow-sm rounded-full py-3.5 px-7 w-52 lg:mx-0 mx-auto flex justify-center text-gray-700 dark:text-white font-semibold transition-all duration-300 hover:bg-gray-200 dark:hover:bg-gray-800"
               >
                 View All
               </a>
@@ -74,12 +81,15 @@ export default function News() {
                 0: { slidesPerView: 1, spaceBetween: 20 },
                 568: { slidesPerView: 2, spaceBetween: 28 },
                 768: { slidesPerView: 2, spaceBetween: 28 },
-                1024: { slidesPerView: 2, spaceBetween: 32 }
+                1024: { slidesPerView: 2, spaceBetween: 32 },
               }}
               className="mySwiper"
             >
               {newsData.news.map((item, index) => (
-                <SwiperSlide key={index} className="w-full max-lg:max-w-xl lg:w-1/2 group">
+                <SwiperSlide
+                  key={index}
+                  className="w-full max-lg:max-w-xl lg:w-1/2 group"
+                >
                   <div className="flex items-center mb-9">
                     <img
                       src={item.image}
@@ -87,15 +97,15 @@ export default function News() {
                       className="rounded-2xl w-full object-cover"
                     />
                   </div>
-                  <h3 className="text-xl text-gray-700 font-medium leading-8 mb-4 group-hover:text-blue-600">
+                  <h3 className="text-xl text-black dark:text-white font-medium leading-8 mb-4 group-hover:text-blue-600 dark:group-hover:text-yellow-400">
                     {item.title}
                   </h3>
-                  <p className="text-gray-700 leading-6 transition-all duration-500 mb-8">
+                  <p className="text-gray-700 dark:text-gray-300 leading-6 transition-all duration-500 mb-8">
                     {item.description}
                   </p>
                   <a
                     href={item.link}
-                    className="cursor-pointer flex items-center gap-2 text-lg text-blue-700 font-semibold"
+                    className="cursor-pointer flex items-center gap-2 text-lg text-blue-700 dark:text-yellow-400 font-semibold"
                   >
                     Read more
                     <svg
@@ -107,7 +117,7 @@ export default function News() {
                     >
                       <path
                         d="M1.25 6L13.25 6M9.5 10.5L13.4697 6.53033C13.7197 6.28033 13.8447 6.15533 13.8447 6C13.8447 5.84467 13.7197 5.71967 13.4697 5.46967L9.5 1.5"
-                        stroke="#0000FF"
+                        stroke="currentColor"
                         strokeWidth="1.8"
                         strokeLinecap="round"
                         strokeLinejoin="round"

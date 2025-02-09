@@ -11,6 +11,11 @@
     ],
     "navMain": [
       {
+        "title": "About",
+        "url": "/about",
+        "icon": "Newspaper"
+      },
+      {
         "title": "Our Club",
         "url": "#",
         "icon": "Calendar",
