@@ -9,13 +9,13 @@ const TransitionLink = ({ href, label }) => {
 
   const handleClick = () => {
     if (pathname !== href) {
-      animatePageOut(href, router); // Pass only href and router
+      animatePageOut(href, router);
     }
   };
 
   return (
     <button
-      className="text-xl text-neutral-900 hover:text-neutral-700"
+      className="text-xl text-neutral-900 dark:text-white hover:text-neutral-700 dark:hover:text-gray-300 transition"
       onClick={handleClick}
     >
       {label}

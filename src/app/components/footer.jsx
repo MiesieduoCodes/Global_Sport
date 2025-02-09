@@ -24,19 +24,19 @@ const Footer = () => {
         }
       );
     }
-  }, []); // ✅ Corrected useEffect (removed nested useEffect)
+  }, []);
 
   return (
     <div>
-      <footer className="bg-indigo-900 foot w-full upside animate-fade-in font-montserrat">
+      <footer className="w-full bg-blue-900 text-white dark:bg-black dark:text-gray-200 transition-colors duration-300 font-montserrat">
         <div className="mx-auto w-full max-w-screen-xl">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-6 py-10 lg:py-12">
             {/* About Section */}
             <div className="footer-section">
-              <h2 className="mb-6 text-sm font-semibold text-yellow-400  uppercase tracking-wide">
+              <h2 className="mb-6 text-sm font-semibold text-yellow-400 uppercase tracking-wide">
                 About Global Sport International
               </h2>
-              <ul className="text-white font-medium space-y-3">
+              <ul className="space-y-3">
                 <li>
                   <a href="/clubhistory" className="hover:text-yellow-400 transition">
                     Our Story
@@ -65,7 +65,7 @@ const Footer = () => {
               <h2 className="mb-6 text-sm font-semibold text-yellow-400 uppercase tracking-wide">
                 Follow Us
               </h2>
-              <ul className="text-white font-medium space-y-3">
+              <ul className="space-y-3">
                 <li>
                   <a href="https://www.instagram.com/globalsport247_/" className="hover:text-yellow-400 transition">
                     Instagram
@@ -89,7 +89,7 @@ const Footer = () => {
               <h2 className="mb-6 text-sm font-semibold text-yellow-400 uppercase tracking-wide">
                 Legal
               </h2>
-              <ul className="text-white font-medium space-y-3">
+              <ul className="space-y-3">
                 <li>
                   <a href="/privacy" className="hover:text-yellow-400 transition">
                     Privacy Policy
@@ -113,18 +113,18 @@ const Footer = () => {
               <h2 className="mb-6 text-sm font-semibold text-yellow-400 uppercase tracking-wide">
                 Stay Updated
               </h2>
-              <p className="text-white font-medium mb-4">
+              <p className="mb-4">
                 Subscribe for the latest football news, match updates, and exclusive content.
               </p>
               <form>
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="w-full p-3 rounded-lg bg-white text-black placeholder-gray-500 mb-4 focus:outline-none focus:ring-2 focus:ring-yellow-400"
+                  className="w-full p-3 rounded-lg bg-gray-100 dark:bg-gray-800 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 mb-4 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-colors"
                 />
                 <button
                   type="submit"
-                  className="w-full py-3 bg-yellow-400 text-black rounded-lg hover:bg-white hover:text-black transition-all duration-300"
+                  className="w-full py-3 bg-yellow-400 text-black rounded-lg hover:bg-yellow-500 transition-all duration-300"
                 >
                   Subscribe
                 </button>
@@ -133,7 +133,7 @@ const Footer = () => {
           </div>
 
           {/* Footer Bottom */}
-          <div className="py-6 text-center text-white text-sm">
+          <div className="py-6 text-center text-sm text-gray-300 dark:text-gray-500">
             <p suppressHydrationWarning={true}>
               &copy; {new Date().getFullYear()} Global Sport Football Club. All Rights Reserved.
             </p>
