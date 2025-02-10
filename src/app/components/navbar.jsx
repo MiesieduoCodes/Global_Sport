@@ -97,7 +97,7 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Menu with Animation */}
+        {/* Full-Screen Mobile Menu */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
@@ -105,33 +105,39 @@ const Navbar = () => {
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "-100%", opacity: 0 }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="lg:hidden bg-white dark:bg-black text-black dark:text-white shadow-md p-4 fixed top-16 left-0 w-3/4 h-full z-30"
+              className="fixed top-0 left-0 w-full h-full bg-white dark:bg-black text-black dark:text-white z-50 flex flex-col items-center justify-center"
             >
-              <ul className="space-y-4">
+              {/* Close Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="absolute top-5 right-5 text-black dark:text-white"
+              >
+                <X className="w-8 h-8" />
+              </button>
+
+              {/* Mobile Menu Items */}
+              <ul className="space-y-6 text-center">
                 {menuData.navMain.map((item, index) => (
                   <motion.li
                     key={index}
-                    initial={{ x: index % 2 === 0 ? "-50%" : "50%", opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
-                    className="flex flex-col"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    className="text-2xl font-semibold"
                   >
-                    <button
-                      onClick={() => toggleDropdown(index)}
-                      className="flex items-center w-full justify-between px-4 py-2 font-semibold"
-                    >
+                    <button onClick={() => toggleDropdown(index)} className="flex items-center">
                       {item.title}
-                      {item.items && <ChevronDown className="w-4 h-4" />}
+                      {item.items && <ChevronDown className="w-5 h-5 ml-2" />}
                     </button>
+
                     {activeDropdownIndex === index && item.items && (
-                      <ul className="mt-2 bg-gray-100 dark:bg-gray-800 rounded-lg p-2">
+                      <ul className="mt-2 space-y-2 text-lg">
                         {item.items.map((subItem, subIndex) => (
                           <motion.li
                             key={subIndex}
-                            initial={{ x: subIndex % 2 === 0 ? "-30%" : "30%", opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ duration: 0.4, ease: "easeOut", delay: subIndex * 0.1 }}
-                            className="px-4 py-2 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-lg"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.2, delay: subIndex * 0.1 }}
                           >
                             <TransitionLink href={subItem.url} label={subItem.title} />
                           </motion.li>
@@ -150,4 +156,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
-    
+      
