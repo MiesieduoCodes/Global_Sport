@@ -1,11 +1,16 @@
 "use client";
-import React, { useEffect } from "react";
+
+import React, { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import emailjs from "emailjs-com";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState(null);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       gsap.fromTo(
@@ -26,6 +31,31 @@ const Footer = () => {
     }
   }, []);
 
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+
+    if (!email) {
+      setStatus({ type: "error", message: "Please enter an email address." });
+      return;
+    }
+
+    try {
+      const response = await emailjs.send(
+        "service_mofzwum",
+        "template_ormpbz2",
+        { user_email: email },
+        "a1NybmXRcYdkYXTu6"
+      );
+
+      if (response.status === 200) {
+        setStatus({ type: "success", message: "Subscription successful!" });
+        setEmail(""); // Clear the input field
+      }
+    } catch (error) {
+      setStatus({ type: "error", message: "Subscription failed. Try again later." });
+    }
+  };
+
   return (
     <div>
       <footer className="w-full bg-blue-900 text-white dark:bg-black dark:text-gray-200 transition-colors duration-300 font-montserrat">
@@ -37,26 +67,10 @@ const Footer = () => {
                 About Global Sport International
               </h2>
               <ul className="space-y-3">
-                <li>
-                  <a href="/clubhistory" className="hover:text-yellow-400 transition">
-                    Our Story
-                  </a>
-                </li>
-                <li>
-                  <a href="/news" className="hover:text-yellow-400 transition">
-                    Football News
-                  </a>
-                </li>
-                <li>
-                  <a href="/players" className="hover:text-yellow-400 transition">
-                    Player Highlights
-                  </a>
-                </li>
-                <li>
-                  <a href="/matches" className="hover:text-yellow-400 transition">
-                    Upcoming Matches
-                  </a>
-                </li>
+                <li><a href="/clubhistory" className="hover:text-yellow-400 transition">Our Story</a></li>
+                <li><a href="/news" className="hover:text-yellow-400 transition">Football News</a></li>
+                <li><a href="/players" className="hover:text-yellow-400 transition">Player Highlights</a></li>
+                <li><a href="/matches" className="hover:text-yellow-400 transition">Upcoming Matches</a></li>
               </ul>
             </div>
 
@@ -66,21 +80,9 @@ const Footer = () => {
                 Follow Us
               </h2>
               <ul className="space-y-3">
-                <li>
-                  <a href="https://www.instagram.com/globalsport247_/" className="hover:text-yellow-400 transition">
-                    Instagram
-                  </a>
-                </li>
-                <li>
-                  <a href="https://facebook.com/globalsport247" className="hover:text-yellow-400 transition">
-                    Facebook
-                  </a>
-                </li>
-                <li>
-                  <a href="/contact" className="hover:text-yellow-400 transition">
-                    Contact Us
-                  </a>
-                </li>
+                <li><a href="https://www.instagram.com/globalsport247_/" className="hover:text-yellow-400 transition">Instagram</a></li>
+                <li><a href="https://facebook.com/globalsport247" className="hover:text-yellow-400 transition">Facebook</a></li>
+                <li><a href="/contact" className="hover:text-yellow-400 transition">Contact Us</a></li>
               </ul>
             </div>
 
@@ -90,21 +92,9 @@ const Footer = () => {
                 Legal
               </h2>
               <ul className="space-y-3">
-                <li>
-                  <a href="/privacy" className="hover:text-yellow-400 transition">
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a href="/license" className="hover:text-yellow-400 transition">
-                    Licensing
-                  </a>
-                </li>
-                <li>
-                  <a href="/terms" className="hover:text-yellow-400 transition">
-                    Terms &amp; Conditions
-                  </a>
-                </li>
+                <li><a href="/privacy" className="hover:text-yellow-400 transition">Privacy Policy</a></li>
+                <li><a href="/license" className="hover:text-yellow-400 transition">Licensing</a></li>
+                <li><a href="/terms" className="hover:text-yellow-400 transition">Terms & Conditions</a></li>
               </ul>
             </div>
 
@@ -113,13 +103,13 @@ const Footer = () => {
               <h2 className="mb-6 text-sm font-semibold text-yellow-400 uppercase tracking-wide">
                 Stay Updated
               </h2>
-              <p className="mb-4">
-                Subscribe for the latest football news, match updates, and exclusive content.
-              </p>
-              <form>
+              <p className="mb-4">Subscribe for the latest football news, match updates, and exclusive content.</p>
+              <form onSubmit={handleSubscribe}>
                 <input
                   type="email"
                   placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full p-3 rounded-lg bg-gray-100 dark:bg-gray-800 text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 mb-4 focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-colors"
                 />
                 <button
@@ -129,6 +119,11 @@ const Footer = () => {
                   Subscribe
                 </button>
               </form>
+              {status && (
+                <p className={`mt-3 text-sm ${status.type === "success" ? "text-green-400" : "text-red-400"}`}>
+                  {status.message}
+                </p>
+              )}
             </div>
           </div>
 

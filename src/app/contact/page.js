@@ -47,7 +47,7 @@ const ContactPage = () => {
   };
 
   return (
-    <section className="py-16 px-6">
+    <section className="py-16 pt-24 px-6">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10">
         
         {/* Contact Info Section */}
@@ -70,9 +70,9 @@ const ContactPage = () => {
           <h2 className="text-yellow-500 text-3xl font-semibold mb-6">Send Us A Message</h2>
 
           <form onSubmit={handleSubmit}>
-            <FormInput name="name" placeholder="Name" value={formData.name} onChange={handleChange} />
-            <FormInput name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
-            <FormInput name="phone" placeholder="Phone" value={formData.phone} onChange={handleChange} />
+            <FormInput name="name" placeholder="Name" classname="outline-0 placeholder:text-black" value={formData.name} onChange={handleChange} />
+            <FormInput name="email" placeholder="Email" classname="outline-0 placeholder:text-black" value={formData.email} onChange={handleChange} />
+            <FormInput name="phone" placeholder="Phone" classname="outline-0 placeholder:text-black" value={formData.phone} onChange={handleChange} />
             
             {/* Contact Method Selection */}
             <div className="mb-6">

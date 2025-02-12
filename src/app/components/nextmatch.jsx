@@ -25,7 +25,7 @@ export default function NextMatch() {
             <Image src="/path-to-team1-logo.png" width={100} height={100} className="rounded-full" />
             <p className="font-semibold text-lg">Team 1</p>
             <div className="text-2xl font-bold">VS</div>
-            <Image src="/path-to-team2-logo.png" width={100} height={100} className="rounded-full" />
+            <Image src="/path-to-team2-logo.png" alt="teampic" width={100} height={100} className="rounded-full" />
             <p className="font-semibold text-lg">Team 2</p>
           </div>
         </div>
