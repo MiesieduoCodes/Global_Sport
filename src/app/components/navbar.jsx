@@ -12,13 +12,27 @@ const Navbar = () => {
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme } = useTheme();
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     setMenuData(Navdata);
   }, []);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   if (!menuData) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   const toggleDropdown = (index) => {
@@ -30,18 +44,30 @@ const Navbar = () => {
       {/* Top Contact Navbar */}
       <div className="bg-blue-500 text-white w-full fixed text-sm py-2 px-4 flex justify-between items-center z-50 top-0 shadow-md">
         <div className="flex space-x-6 text-xs md:text-sm">
-        <span>Email: globalsportint2017@gmail.com</span>
-        <span>Phone: +77273274755, +77025895922</span>
+          <span>Email: globalsportint2017@gmail.com</span>
+          <span>Phone: +77273274755, +77025895922</span>
         </div>
       </div>
 
       {/* Main Navbar */}
-      <nav className="bg-blue-400 dark:bg-blue-700 text-black dark:text-white shadow-md fixed w-full z-40 top-8">
+      <nav
+        className={`transition-colors duration-300 fixed w-full z-50 top-8 ${
+          isScrolled ? "bg-blue-400 dark:bg-blue-600 shadow-md" : "bg-transparent"
+        }`}
+      >
         <div className="container mx-auto px-4 lg:px-8 flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="text-3xl font-bold hover:text-gray-500">
-            <TransitionLink href={menuData.teams[0].url} label={menuData.teams[0].name} />
-          </div>
+          <div className="h-16">
+  <TransitionLink href={menuData.teams[0].url}>
+    <Image
+      src="/images/Logo.jpg" // Replace with your actual logo path
+      alt={menuData.teams[0].name}
+      width={150}
+      height={60}
+      className="object-contain hover:opacity-80 transition"
+    />
+  </TransitionLink>
+</div>
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex space-x-6 items-center">
@@ -49,7 +75,7 @@ const Navbar = () => {
               <div key={index} className="relative">
                 <button
                   onClick={() => toggleDropdown(index)}
-                  className="flex items-center font-semibold px-4 py-2 hover:text-gray-500 transition"
+                  className="flex items-center font-semibold px-4 py-2 hover:text-gray-500 text-white transition"
                 >
                   {item.title}
                   <ChevronDown
@@ -59,7 +85,7 @@ const Navbar = () => {
                   />
                 </button>
                 {activeDropdownIndex === index && item.items && (
-                  <div className="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-gray-800 text-black dark:text-white shadow-lg border rounded-lg p-2">
+                  <div className="absolute top-full left-0 mt-2 w-64 bg-blue-400 dark:bg-b ue-600 text-black dark:text-white shadow-lg rounded-lg p-2">
                     <ul>
                       {item.items.map((subItem, subIndex) => (
                         <li key={subIndex} className="px-4 py-3 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg">

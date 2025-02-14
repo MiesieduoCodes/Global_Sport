@@ -15,7 +15,7 @@ const TransitionLink = ({ href, label }) => {
 
   return (
     <button
-      className="text-xl text-neutral-900 dark:text-white hover:text-neutral-700 dark:hover:text-gray-300 transition"
+      className="text-xl text-white dark:text-white hover:text-neutral-700 dark:hover:text-gray-300 transition duration-500"
       onClick={handleClick}
     >
       {label}

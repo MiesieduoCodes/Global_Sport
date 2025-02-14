@@ -61,9 +61,6 @@ const Hero = () => {
           >
             <h1 className="text-3xl md:text-4xl font-bold text-yellow-400">{slides[currentSlide].title}</h1>
             <p className="mt-3 text-lg">{slides[currentSlide].text}</p>
-            <button className="mt-5 bg-yellow-400 text-black px-5 py-2 rounded-md font-semibold shadow-lg hover:bg-yellow-500 transition">
-              {slides[currentSlide].buttonText}
-            </button>
           </motion.div>
         </motion.div>
       </AnimatePresence>
