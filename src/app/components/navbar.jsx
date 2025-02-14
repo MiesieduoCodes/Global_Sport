@@ -2,24 +2,23 @@
 import React, { useState, useEffect } from "react";
 import Navdata from "@/app/components/constants/navData";
 import TransitionLink from "@/app/components/TransitionLink";
-import { Menu, X, ChevronDown, Sun, Moon, Globe } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { useTheme } from "next-themes";
-import { motion, AnimatePresence } from "framer-motion";
 import { ModeToggle } from "@/app/components/mode-toggle";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
   const [menuData, setMenuData] = useState(null);
   const [activeDropdownIndex, setActiveDropdownIndex] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
-  const [language, setLanguage] = useState("en");
+  const { theme } = useTheme();
 
   useEffect(() => {
     setMenuData(Navdata);
   }, []);
 
   if (!menuData) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
   const toggleDropdown = (index) => {
@@ -28,21 +27,16 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Top Contact Bar */}
-      <div className="bg-blue-500 dark:bg-gray-900 text-white w-full fixed text-sm py-2 px-4 flex justify-between items-center z-50 top-0 shadow-md">
+      {/* Top Contact Navbar */}
+      <div className="bg-blue-500 text-white w-full fixed text-sm py-2 px-4 flex justify-between items-center z-50 top-0 shadow-md">
         <div className="flex space-x-6 text-xs md:text-sm">
-          <span>Email: globalsportint2017@gmail.com</span>
-          <span>Phone: +77273274755, +77025895922</span>
-        </div>
-        <div className="hidden md:flex space-x-4">
-          <a href="#" className="hover:text-gray-300 font-medium">FAQ</a>
-          <a href="#" className="hover:text-gray-300 font-medium">Support</a>
-          <a href={menuData.user.url} className="hover:text-gray-300 font-medium">Contact</a>
+        <span>Email: globalsportint2017@gmail.com</span>
+        <span>Phone: +77273274755, +77025895922</span>
         </div>
       </div>
 
       {/* Main Navbar */}
-      <nav className="bg-white dark:bg-black text-black dark:text-white shadow-md fixed w-full z-40 top-8">
+      <nav className="bg-blue-400 dark:bg-blue-700 text-black dark:text-white shadow-md fixed w-full z-40 top-8">
         <div className="container mx-auto px-4 lg:px-8 flex justify-between items-center h-16">
           {/* Logo */}
           <div className="text-3xl font-bold hover:text-gray-500">
@@ -58,9 +52,11 @@ const Navbar = () => {
                   className="flex items-center font-semibold px-4 py-2 hover:text-gray-500 transition"
                 >
                   {item.title}
-                  {item.items && (
-                    <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${activeDropdownIndex === index ? "rotate-180" : "rotate-0"}`} />
-                  )}
+                  <ChevronDown
+                    className={`w-4 h-4 ml-2 transition-transform ${
+                      activeDropdownIndex === index ? "rotate-180" : "rotate-0"
+                    }`}
+                  />
                 </button>
                 {activeDropdownIndex === index && item.items && (
                   <div className="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-gray-800 text-black dark:text-white shadow-lg border rounded-lg p-2">
@@ -77,33 +73,8 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Right Side: Language & Theme Toggle */}
-          <div className="flex items-center space-x-4">
-            {/* Language Selector */}
-            <div className="relative">
-              <button className="flex items-center space-x-2 font-semibold hover:text-gray-500">
-                <Globe className="w-5 h-5" />
-                <span>{language.toUpperCase()}</span>
-                <ChevronDown className="w-4 h-4" />
-              </button>
-              <div className="absolute top-full left-0 mt-2 bg-white dark:bg-gray-800 text-black dark:text-white shadow-lg border rounded-lg p-2 hidden group-hover:block">
-                <ul>
-                  {["en", "es", "fr", "de"].map((lang) => (
-                    <li
-                      key={lang}
-                      className="px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg cursor-pointer"
-                      onClick={() => setLanguage(lang)}
-                    >
-                      {lang.toUpperCase()}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Theme Toggle */}
-            <ModeToggle />
-          </div>
+          {/* Theme Toggle Button */}
+          <ModeToggle />
 
           {/* Mobile Menu Button */}
           <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden p-2">
@@ -115,20 +86,23 @@ const Navbar = () => {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              initial={{ x: "-100%", opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: "-100%", opacity: 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="lg:hidden bg-white dark:bg-black text-black dark:text-white shadow-md p-4 fixed top-16 left-0 w-3/4 h-full z-30"
+              className="lg:hidden bg-white dark:bg-black text-black dark:text-white shadow-md fixed top-0 left-0 w-full h-full z-30 flex flex-col"
             >
-              <ul className="space-y-4">
+              <button onClick={() => setIsMobileMenuOpen(false)} className="p-4 self-end">
+                <X className="w-6 h-6" />
+              </button>
+              <ul className="flex flex-col items-center justify-center h-full space-y-4">
                 {menuData.navMain.map((item, index) => (
                   <motion.li
                     key={index}
                     initial={{ x: index % 2 === 0 ? "-50%" : "50%", opacity: 0 }}
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
-                    className="flex flex-col"
+                    className="flex flex-col w-full text-center"
                   >
                     <button
                       onClick={() => toggleDropdown(index)}

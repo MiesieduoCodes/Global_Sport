@@ -6,19 +6,19 @@ import gsap from "gsap";
 import { useTheme } from "next-themes";
 
 const teamImages = [
-  "/images/player1.jpg",
-  "/images/player2.jpg",
-  "/images/player3.jpg",
-  "/images/player4.jpg",
-  "/images/player5.jpg",
+  "/images/PlayerOne.jpg",
+  "/images/FREEIMAGE.jpg",
+  "/images/kneelingimage.jpg",
+  "/images/Immages.jpg",
+  "/images/Handsake.jpg",
   "/images/player6.jpg",
 ];
 
 const people = [
   {
-    name: "Alex Johnson",
+    name: "Lawrence Veria",
     role: "Head Coach",
-    imageUrl: "/images/coach.jpg",
+    imageUrl: "/images/IMG-20250211-WA0166.jpg",
   },
   {
     name: "David Smith",
@@ -45,7 +45,7 @@ export default function TeamPage() {
   }, []);
 
   return (
-    <div className={theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-900"}>
+    <div className={theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-500 text-gray-900"}>
       {/* Team Section */}
       <section ref={sectionRef} className="py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -64,7 +64,7 @@ export default function TeamPage() {
                 These talented players bring passion and skill to every match, representing our club with pride.
               </p>
               <button className="cursor-pointer py-3 px-8 w-60 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition mx-auto lg:mx-0">
-                Join the Squad
+              <a href="/contact">Join the Squad</a>
               </button>
             </motion.div>
 
@@ -81,7 +81,7 @@ export default function TeamPage() {
                     <Image
                       src={src}
                       alt={`Player ${index + 1}`}
-                      width={176}
+                      width={224}
                       height={224}
                       className="w-44 h-56 rounded-2xl object-cover"
                     />

@@ -23,6 +23,24 @@ export default function Awards() {
 
   return (
     <div className="bg-white dark:bg-gray-900 transition-colors duration-300">
+         <div
+      className="hero min-h-screen"
+      style={{
+        backgroundImage:
+          "url(https://images.pexels.com/photos/6532366/pexels-photo-6532366.jpeg?auto=compress&cs=tinysrgb&w=600)",
+      }}
+    >
+      <div className="hero-overlay bg-opacity-60"></div>
+      <div className="hero-content text-neutral-content text-center">
+        <div className="max-w-md">
+          <h1 className="mb-5 text-5xl font-bold">Celebrate Excellence</h1>
+          <p className="mb-5">
+            Join us in honoring outstanding achievements and recognizing those who set new standards in innovation, leadership, and creativity. Our awards program celebrates excellence and inspires future success.
+          </p>
+         
+        </div>
+      </div>
+    </div>
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <h2 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           Football Awards and Achievements

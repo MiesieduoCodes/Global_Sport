@@ -4,15 +4,15 @@ import Navbar from "@/app/components/navbar";
 import Footer from "@/app/components/footer";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { ThemeProvider } from "@/app/components/theme-provider"
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+// const geistSans = Geist({
+//   variable: "--font-geist-sans",
+//   subsets: ["latin"],
+// });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
 
 export const metadata = {
   title: "Global Sports FC",
@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased pt-10`}
+        // className={`${geistSans.variable} ${geistMono.variable} antialiased pt-10`}
       >
                   <ThemeProvider
             attribute="class"
