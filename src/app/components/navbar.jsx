@@ -1,11 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Navdata from "@/app/components/constants/navData";
+import Navdata from "@/app/components/constants/navData.json";
 import TransitionLink from "@/app/components/TransitionLink";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useTheme } from "next-themes";
 import { ModeToggle } from "@/app/components/mode-toggle";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const Navbar = () => {
   const [menuData, setMenuData] = useState(null);
@@ -19,142 +20,186 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (!menuData) {
-    return <div>Loading...</div>;
-  }
-
   const toggleDropdown = (index) => {
-    setActiveDropdownIndex((prevIndex) => (prevIndex === index ? null : index));
+    setActiveDropdownIndex(prev => prev === index ? null : index);
   };
+
+  const closeMobileMenu = () => setIsMobileMenuOpen(false);
+
+  if (!menuData) return <div className="h-16" />;
 
   return (
     <>
-      {/* Top Contact Navbar */}
-      <div className="bg-blue-500 text-white w-full fixed text-sm py-2 px-4 flex justify-between items-center z-50 top-0 shadow-md">
-        <div className="flex space-x-6 text-xs md:text-sm">
-          <span>Email: globalsportint2017@gmail.com</span>
-          <span>Phone: +77273274755, +77025895922</span>
+      {/* Top Contact Bar */}
+      <div className={`fixed top-0 w-full z-50 text-sm py-2 px-4 bg-blue-600 text-white shadow-md transition-all duration-300 ${isScrolled ? 'opacity-90' : 'opacity-100'}`}>
+        <div className="container mx-auto flex justify-between items-center">
+          <div className="flex items-center space-x-4">
+            <a href="tel:+77273274755" className="hover:text-blue-200 transition-colors">
+              +7 727 327 47 55
+            </a>
+            <a href="tel:+77025895922" className="hover:text-blue-200 transition-colors">
+              +7 702 589 59 22
+            </a>
+          </div>
+          <a href="mailto:info@gsfc.com" className="hover:text-blue-200 transition-colors">
+            info@gsfc.com
+          </a>
         </div>
       </div>
 
-      {/* Main Navbar */}
-      <nav
-        className={`transition-colors duration-300 fixed w-full z-50 top-8 ${
-          isScrolled ? "bg-blue-400 dark:bg-blue-600 shadow-md" : "bg-transparent"
-        }`}
-      >
-        <div className="container mx-auto px-4 lg:px-8 flex justify-between items-center h-16">
+      {/* Main Navigation */}
+      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'top-8 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-md' : 'top-12 bg-transparent'}`}>
+        <div className="container mx-auto px-4 lg:px-8 flex justify-between items-center h-20">
           {/* Logo */}
-          <div className="h-16">
-  <TransitionLink href={menuData.teams[0].url}>
-    <Image
-      src="/images/Logo.jpg" // Replace with your actual logo path
-      alt={menuData.teams[0].name}
-      width={150}
-      height={60}
-      className="object-contain hover:opacity-80 transition"
-    />
-  </TransitionLink>
-</div>
+          <TransitionLink href={menuData.teams[0].url} className="relative h-16 w-48">
+            <Image
+              src="/images/logo.png" // Update with your logo path
+              alt="Global Sports FC Logo"
+              fill
+              className="object-contain hover:opacity-80 transition-opacity"
+              priority
+            />
+          </TransitionLink>
 
-          {/* Desktop Menu */}
-          <div className="hidden lg:flex space-x-6 items-center">
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-8">
             {menuData.navMain.map((item, index) => (
-              <div key={index} className="relative">
-                <button
-                  onClick={() => toggleDropdown(index)}
-                  className="flex items-center font-semibold px-4 py-2 hover:text-gray-500 text-white transition"
-                >
-                  {item.title}
-                  <ChevronDown
-                    className={`w-4 h-4 ml-2 transition-transform ${
-                      activeDropdownIndex === index ? "rotate-180" : "rotate-0"
-                    }`}
-                  />
-                </button>
-                {activeDropdownIndex === index && item.items && (
-                  <div className="absolute top-full left-0 mt-2 w-64 bg-blue-400 dark:bg-b ue-600 text-black dark:text-white shadow-lg rounded-lg p-2">
-                    <ul>
-                      {item.items.map((subItem, subIndex) => (
-                        <li key={subIndex} className="px-4 py-3 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg">
-                          <TransitionLink href={subItem.url} label={subItem.title} />
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+              <div key={index} className="relative group"
+                onMouseEnter={() => item.items && toggleDropdown(index)}
+                onMouseLeave={() => item.items && toggleDropdown(null)}
+              >
+                {item.items ? (
+                  <>
+                    <button
+                      className="flex items-center px-4 py-2 text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+                      aria-expanded={activeDropdownIndex === index}
+                      aria-controls={`dropdown-${index}`}
+                    >
+                      {item.title}
+                      <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${activeDropdownIndex === index ? 'rotate-180' : ''}`} />
+                    </button>
+                    
+                    <AnimatePresence>
+                      {activeDropdownIndex === index && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          className="absolute top-full left-0 min-w-[240px] bg-white dark:bg-gray-800 shadow-xl rounded-lg p-2 border border-gray-100 dark:border-gray-700"
+                          id={`dropdown-${index}`}
+                        >
+                          {item.items.map((subItem, subIndex) => (
+                            <TransitionLink
+                              key={subIndex}
+                              href={subItem.url}
+                              className="block px-4 py-3 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-md transition-colors"
+                              onClick={closeMobileMenu}
+                            >
+                              {subItem.title}
+                            </TransitionLink>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </>
+                ) : (
+                  <TransitionLink
+                    href={item.url}
+                    className="px-4 py-2 text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+                  >
+                    {item.title}
+                  </TransitionLink>
                 )}
               </div>
             ))}
+            <ModeToggle />
           </div>
 
-          {/* Theme Toggle Button */}
-          <ModeToggle />
-
           {/* Mobile Menu Button */}
-          <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden p-2">
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2 text-gray-800 dark:text-white"
+            aria-label="Open menu"
+          >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
 
-        {/* Mobile Menu with Animation */}
+        {/* Mobile Navigation */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="lg:hidden bg-white dark:bg-black text-black dark:text-white shadow-md fixed top-0 left-0 w-full h-full z-30 flex flex-col"
+              initial={{ opacity: 0, x: '100%' }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: '100%' }}
+              className="lg:hidden fixed inset-0 bg-white dark:bg-gray-900 z-50 p-6"
             >
-              <button onClick={() => setIsMobileMenuOpen(false)} className="p-4 self-end">
-                <X className="w-6 h-6" />
-              </button>
-              <ul className="flex flex-col items-center justify-center h-full space-y-4">
+              <div className="flex justify-end mb-8">
+                <button
+                  onClick={closeMobileMenu}
+                  className="p-2 text-gray-800 dark:text-white"
+                  aria-label="Close menu"
+                >
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+
+              <nav className="space-y-4">
                 {menuData.navMain.map((item, index) => (
-                  <motion.li
-                    key={index}
-                    initial={{ x: index % 2 === 0 ? "-50%" : "50%", opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
-                    className="flex flex-col w-full text-center"
-                  >
-                    <button
-                      onClick={() => toggleDropdown(index)}
-                      className="flex items-center w-full justify-between px-4 py-2 font-semibold"
-                    >
-                      {item.title}
-                      {item.items && <ChevronDown className="w-4 h-4" />}
-                    </button>
-                    {activeDropdownIndex === index && item.items && (
-                      <ul className="mt-2 bg-gray-100 dark:bg-gray-800 rounded-lg p-2">
-                        {item.items.map((subItem, subIndex) => (
-                          <motion.li
-                            key={subIndex}
-                            initial={{ x: subIndex % 2 === 0 ? "-30%" : "30%", opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ duration: 0.4, ease: "easeOut", delay: subIndex * 0.1 }}
-                            className="px-4 py-2 hover:bg-gray-300 dark:hover:bg-gray-700 rounded-lg"
-                          >
-                            <TransitionLink href={subItem.url} label={subItem.title} />
-                          </motion.li>
-                        ))}
-                      </ul>
+                  <div key={index} className="border-b border-gray-100 dark:border-gray-800 pb-4">
+                    {item.items ? (
+                      <>
+                        <button
+                          onClick={() => toggleDropdown(index)}
+                          className="w-full flex justify-between items-center py-3 text-gray-800 dark:text-white"
+                          aria-expanded={activeDropdownIndex === index}
+                        >
+                          <span>{item.title}</span>
+                          <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdownIndex === index ? 'rotate-180' : ''}`} />
+                        </button>
+                        
+                        <AnimatePresence>
+                          {activeDropdownIndex === index && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="pl-4 space-y-2"
+                            >
+                              {item.items.map((subItem, subIndex) => (
+                                <TransitionLink
+                                  key={subIndex}
+                                  href={subItem.url}
+                                  className="block py-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+                                  onClick={closeMobileMenu}
+                                >
+                                  {subItem.title}
+                                </TransitionLink>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </>
+                    ) : (
+                      <TransitionLink
+                        href={item.url}
+                        className="block py-3 text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400"
+                        onClick={closeMobileMenu}
+                      >
+                        {item.title}
+                      </TransitionLink>
                     )}
-                  </motion.li>
+                  </div>
                 ))}
-              </ul>
+                <div className="pt-4">
+                  <ModeToggle />
+                </div>
+              </nav>
             </motion.div>
           )}
         </AnimatePresence>

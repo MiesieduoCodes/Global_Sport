@@ -31,6 +31,11 @@ export default function VideoCarousel() {
             className="relative w-[250px] h-[350px] md:w-[300px] md:h-[400px] flex-shrink-0 rounded-xl overflow-hidden bg-gray-900 dark:bg-gray-800"
           >
             <div className="group relative w-full h-full">
+              {/* Top Left Date Text */}
+              <div className="absolute top-0 left-0 m-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-sm font-bold">
+                {video.date}
+              </div>
+
               {/* Thumbnail */}
               <Image
                 src={video.thumbnail}
@@ -49,7 +54,7 @@ export default function VideoCarousel() {
                 playsInline
               />
 
-              {/* Overlay with Text and Link */}
+              {/* Overlay with Text and Link on Hover */}
               <div className="absolute bottom-0 left-0 w-full h-[350px] p-4 bg-gradient-to-t from-blue-700 dark:from-yellow-500 via-transparent to-transparent text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 <a
                   href={video.link}

@@ -1,44 +1,51 @@
 [
-    {
-      "src": "/videos/video1.mp4",
-      "thumbnail": "/images/thumb1.jpg",
-      "title": "Epic Goal Moments",
-      "link": "/videos/video1.mp4"
-    },
-    {
-      "src": "/videos/video2.mp4",
-      "thumbnail": "/images/thumb2.jpg",
-      "title": "Best Assists Compilation",
-      "link": "/videos/video2.mp4"
-    },
-    {
-      "src": "/videos/video3.mp4",
-      "thumbnail": "/images/thumb3.jpg",
-      "title": "Top Saves of the Year",
-      "link": "/videos/video3.mp4"
-    },
-    {
-      "src": "/videos/video4.mp4",
-      "thumbnail": "/images/thumb4.jpg",
-      "title": "Unbelievable Dribbles",
-      "link": "/videos/video4.mp4"
-    },
-    {
-      "src": "/videos/video5.mp4",
-      "thumbnail": "/images/thumb5.jpg",
-      "title": "Last-Minute Goals",
-      "link": "/videos/video5.mp4"
-    },
-    {
-      "src": "/videos/video6.mp4",
-      "thumbnail": "/images/thumb6.jpg",
-      "title": "Celebrations Gone Wild",
-      "link": "/videos/video6.mp4"
-    },
-    {
-        "src": "/videos/video1.mp4",
-        "thumbnail": "/images/thumb1.jpg",
-        "title": "Epic Goal Moments",
-        "link": "/videos/video1.mp4"
-      }
-  ]
+  {
+    "src": "/videos/video1.mp4",
+    "thumbnail": "/images/thumb1.jpg",
+    "title": "Epic Goal Moments",
+    "link": "/videos/video1.mp4",
+    "date": "2023-08-15"
+  },
+  {
+    "src": "/videos/video2.mp4",
+    "thumbnail": "/images/thumb2.jpg",
+    "title": "Best Assists Compilation",
+    "link": "/videos/video2.mp4",
+    "date": "2023-08-16"
+  },
+  {
+    "src": "/videos/video3.mp4",
+    "thumbnail": "/images/thumb3.jpg",
+    "title": "Top Saves of the Year",
+    "link": "/videos/video3.mp4",
+    "date": "2023-08-17"
+  },
+  {
+    "src": "/videos/video4.mp4",
+    "thumbnail": "/images/thumb4.jpg",
+    "title": "Unbelievable Dribbles",
+    "link": "/videos/video4.mp4",
+    "date": "2023-08-18"
+  },
+  {
+    "src": "/videos/video5.mp4",
+    "thumbnail": "/images/thumb5.jpg",
+    "title": "Last-Minute Goals",
+    "link": "/videos/video5.mp4",
+    "date": "2023-08-19"
+  },
+  {
+    "src": "/videos/video6.mp4",
+    "thumbnail": "/images/thumb6.jpg",
+    "title": "Celebrations Gone Wild",
+    "link": "/videos/video6.mp4",
+    "date": "2023-08-20"
+  },
+  {
+    "src": "/videos/video1.mp4",
+    "thumbnail": "/images/thumb1.jpg",
+    "title": "Epic Goal Moments",
+    "link": "/videos/video1.mp4",
+    "date": "2023-08-15"
+  }
+]
