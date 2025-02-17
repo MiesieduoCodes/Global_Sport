@@ -8,7 +8,7 @@ import { ModeToggle } from "@/app/components/mode-toggle";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import LanguageSelector from "@/app/components/LanguageSelector";
-import { useLanguage } from "@/app/context/LanguageContext"; // Import the language context
+import { useLanguage } from "@/app/context/LanguageContext";
 
 const Navbar = () => {
   const [menuData, setMenuData] = useState(null);
@@ -16,7 +16,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
-  const { currentLanguage, changeLanguage } = useLanguage(); // Use language context
+  const { currentLanguage, changeLanguage } = useLanguage();
 
   useEffect(() => {
     setMenuData(Navdata);
@@ -29,7 +29,7 @@ const Navbar = () => {
   }, []);
 
   const toggleDropdown = (index) => {
-    setActiveDropdownIndex(prev => prev === index ? null : index);
+    setActiveDropdownIndex((prev) => (prev === index ? null : index));
   };
 
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
@@ -39,29 +39,51 @@ const Navbar = () => {
   return (
     <>
       {/* Top Contact Bar */}
-      <div className={`fixed top-0 w-full z-50 text-sm py-2 px-4 bg-blue-600 text-white shadow-md transition-all duration-300 ${isScrolled ? 'opacity-90' : 'opacity-100'}`}>
+      <div
+        className={`fixed top-0 w-full z-50 text-sm py-2 px-4 bg-blue-600 text-white shadow-md transition-all duration-300 ${
+          isScrolled ? "opacity-90" : "opacity-100"
+        }`}
+      >
         <div className="container mx-auto flex justify-between items-center">
           <div className="flex items-center space-x-4">
-            <a href="tel:+77273274755" className="hover:text-blue-200 transition-colors">
+            <a
+              href="tel:+77273274755"
+              className="hover:text-blue-200 transition-colors"
+            >
               +7 727 327 47 55
             </a>
-            <a href="tel:+77025895922" className="hover:text-blue-200 transition-colors">
+            <a
+              href="tel:+77025895922"
+              className="hover:text-blue-200 transition-colors"
+            >
               +7 702 589 59 22
             </a>
           </div>
-          <a href="mailto:info@gsfc.com" className="hover:text-blue-200 transition-colors">
+          <a
+            href="mailto:info@gsfc.com"
+            className="hover:text-blue-200 transition-colors"
+          >
             info@gsfc.com
           </a>
         </div>
       </div>
 
       {/* Main Navigation */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'top-8 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-md' : 'top-12 bg-transparent'}`}>
+      <nav
+        className={`fixed w-full z-50 transition-all duration-300 ${
+          isScrolled
+            ? "top-8 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-md"
+            : "top-12 bg-transparent"
+        }`}
+      >
         <div className="container mx-auto px-4 lg:px-8 flex justify-between items-center h-20">
           {/* Logo */}
-          <TransitionLink href={menuData.teams[0].url} className="relative h-16 w-48">
+          <TransitionLink
+            href={menuData.teams[0].url}
+            className="relative h-16 w-48"
+          >
             <Image
-              src="/images/logo.png" // Update with your logo path
+              src="/images/Logo.jpg" // Ensure this file exists in your /public/images folder
               alt="Global Sports FC Logo"
               fill
               className="object-contain hover:opacity-80 transition-opacity"
@@ -72,7 +94,9 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             {menuData.navMain.map((item, index) => (
-              <div key={index} className="relative group"
+              <div
+                key={index}
+                className="relative group"
                 onMouseEnter={() => item.items && toggleDropdown(index)}
                 onMouseLeave={() => item.items && toggleDropdown(null)}
               >
@@ -84,9 +108,12 @@ const Navbar = () => {
                       aria-controls={`dropdown-${index}`}
                     >
                       {item.title}
-                      <ChevronDown className={`w-4 h-4 ml-2 transition-transform ${activeDropdownIndex === index ? 'rotate-180' : ''}`} />
+                      <ChevronDown
+                        className={`w-4 h-4 ml-2 transition-transform ${
+                          activeDropdownIndex === index ? "rotate-180" : ""
+                        }`}
+                      />
                     </button>
-                    
                     <AnimatePresence>
                       {activeDropdownIndex === index && (
                         <motion.div
@@ -121,7 +148,6 @@ const Navbar = () => {
               </div>
             ))}
             <ModeToggle />
-            {/* Language Selector */}
             <LanguageSelector
               currentLanguage={currentLanguage}
               onLanguageChange={changeLanguage}
@@ -142,9 +168,9 @@ const Navbar = () => {
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, x: '100%' }}
+              initial={{ opacity: 0, x: "100%" }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: '100%' }}
+              exit={{ opacity: 0, x: "100%" }}
               className="lg:hidden fixed inset-0 bg-white dark:bg-gray-900 z-50 p-6"
             >
               <div className="flex justify-end mb-8">
@@ -156,7 +182,6 @@ const Navbar = () => {
                   <X className="w-6 h-6" />
                 </button>
               </div>
-
               <nav className="space-y-4">
                 {menuData.navMain.map((item, index) => (
                   <div key={index} className="border-b border-gray-100 dark:border-gray-800 pb-4">
@@ -168,14 +193,17 @@ const Navbar = () => {
                           aria-expanded={activeDropdownIndex === index}
                         >
                           <span>{item.title}</span>
-                          <ChevronDown className={`w-4 h-4 transition-transform ${activeDropdownIndex === index ? 'rotate-180' : ''}`} />
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform ${
+                              activeDropdownIndex === index ? "rotate-180" : ""
+                            }`}
+                          />
                         </button>
-                        
                         <AnimatePresence>
                           {activeDropdownIndex === index && (
                             <motion.div
                               initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: 'auto' }}
+                              animate={{ opacity: 1, height: "auto" }}
                               exit={{ opacity: 0, height: 0 }}
                               className="pl-4 space-y-2"
                             >
@@ -206,7 +234,6 @@ const Navbar = () => {
                 ))}
                 <div className="pt-4">
                   <ModeToggle />
-                  {/* Language Selector for Mobile */}
                   <LanguageSelector
                     currentLanguage={currentLanguage}
                     onLanguageChange={changeLanguage}

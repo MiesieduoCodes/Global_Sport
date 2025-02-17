@@ -46,7 +46,7 @@ export default function Awards() {
           Football Awards and Achievements
         </h2>
         <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
-          Here is a collection of prestigious awards and accolades won throughout my football career. These achievements reflect my dedication, skill, and contribution to the sport. Each award represents a significant milestone that motivates me to strive for excellence.
+          Here is a collection of prestigious awards and accolades won throughout our football career. These achievements reflect our dedication, skill, and contribution to the sport. Each award represents a significant milestone that motivates us to strive for excellence.
         </p>
 
         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">

@@ -5,40 +5,40 @@ import { CloudArrowUpIcon, LockClosedIcon, ServerIcon } from "@heroicons/react/2
 
 // Content JSON
 const contentData = {
-    title: "The Legacy of United FC",
+    title: "The Legacy of Global Sport FC",
     subtitle: "A Journey Through Time and Triumph",
     description:
-      "From humble beginnings to global dominance, United FC has carved its name in football history. Explore the milestones, legendary players, and unforgettable moments that define this iconic club.",
+      "From humble beginnings to global dominance, Global Sport FC has carved its name in football history. Explore the milestones, legendary players, and unforgettable moments that define this iconic club.",
     features: [
       {
         icon: CloudArrowUpIcon,
         title: "Founding Years",
         description:
-          "Established in 1892, United FC started as a local club with a passionate following. The early years saw struggles, but determination and a unique playing style set the foundation for future success.",
+          "Established in 1892, Global Sport FC started as a local club with a passionate following. The early years saw struggles, but determination and a unique playing style set the foundation for future success.",
       },
       {
         icon: LockClosedIcon,
         title: "Era of Dominance",
         description:
-          "The mid-20th century marked the club's rise to prominence. With back-to-back league titles and a signature attacking style, United FC became a powerhouse in domestic and international competitions.",
+          "The mid-20th century marked the club's rise to prominence. With back-to-back league titles and a signature attacking style, Global Sport FC became a powerhouse in domestic and international competitions.",
       },
       {
         icon: ServerIcon,
         title: "European Glory",
         description:
-          "United FC's historic triumphs in continental tournaments solidified its reputation as one of the greatest clubs. Memorable finals, legendary goals, and unwavering fan support shaped its global identity.",
+          "Global Sport FC's historic triumphs in continental tournaments solidified its reputation as one of the greatest clubs. Memorable finals, legendary goals, and unwavering fan support shaped its global identity.",
       },
       {
         icon: ServerIcon,
         title: "European Glory",
         description:
-          "United FC's historic triumphs in continental tournaments solidified its reputation as one of the greatest clubs. Memorable finals, legendary goals, and unwavering fan support shaped its global identity.",
+          "Global Sport FC's historic triumphs in continental tournaments solidified its reputation as one of the greatest clubs. Memorable finals, legendary goals, and unwavering fan support shaped its global identity.",
       },
     ],
     additionalContent: [
       {
         title: "A Club Built on Passion",
-        text: "From the roaring terraces of the home stadium to the countless fans across the world, United FC is more than a football club—it’s a family. The unity between players and supporters has fueled decades of success.",
+        text: "From the roaring terraces of the home stadium to the countless fans across the world, Global Sport FC is more than a football club—it’s a family. The unity between players and supporters has fueled decades of success.",
       },
       {
         title: "Legendary Players",
@@ -46,25 +46,25 @@ const contentData = {
       },
       {
         title: "A Future of Excellence",
-        text: "With a state-of-the-art training facility, a thriving youth academy, and a vision for sustainable success, United FC is committed to writing new chapters in football history.",
+        text: "With a state-of-the-art training facility, a thriving youth academy, and a vision for sustainable success, Global Sport FC is committed to writing new chapters in football history.",
       },
       {
         title: "A Future of Excellence",
-        text: "With a state-of-the-art training facility, a thriving youth academy, and a vision for sustainable success, United FC is committed to writing new chapters in football history.",
+        text: "With a state-of-the-art training facility, a thriving youth academy, and a vision for sustainable success, Global Sport FC is committed to writing new chapters in football history.",
       },
       {
         title: "A Future of Excellence",
-        text: "With a state-of-the-art training facility, a thriving youth academy, and a vision for sustainable success, United FC is committed to writing new chapters in football history.",
+        text: "With a state-of-the-art training facility, a thriving youth academy, and a vision for sustainable success, Global Sport FC is committed to writing new chapters in football history.",
       },
     ],
     images: [
       {
         src: "https://images.pexels.com/photos/29185445/pexels-photo-29185445/free-photo-of-children-playing-soccer-in-urban-alleyway.jpeg?auto=compress&cs=tinysrgb&w=600",
-        alt: "United FC celebrating a championship victory",
+        alt: "Global Sport FC celebrating a championship victory",
       },
       {
         src: "https://images.pexels.com/photos/17258095/pexels-photo-17258095/free-photo-of-exterior-of-the-san-siro-football-stadium-in-milan-italy.jpeg?auto=compress&cs=tinysrgb&w=600",
-        alt: "Legendary players of United FC",
+        alt: "Legendary players of Global Sport FC",
       },
     ],
   };
