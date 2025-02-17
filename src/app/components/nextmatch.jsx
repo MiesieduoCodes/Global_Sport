@@ -10,7 +10,12 @@ export default function NextMatch() {
 
   useEffect(() => {
     gsap.from(headerRef.current, { opacity: 0, y: -30, duration: 0.8 });
-    gsap.from(teamsRef.current, { opacity: 0, scale: 0.9, duration: 0.8, delay: 0.3 });
+    gsap.from(teamsRef.current, {
+      opacity: 0,
+      scale: 0.9,
+      duration: 0.8,
+      delay: 0.3,
+    });
   }, []);
 
   return (
@@ -19,7 +24,7 @@ export default function NextMatch() {
         {/* Heading */}
         <h2
           ref={headerRef}
-          className="text-3xl font-bold text-blue-600 dark:text-yellow-400 mb-6"
+          className="text-2xl md:text-3xl font-bold text-blue-600 dark:text-yellow-400 mb-6"
         >
           Next Match
         </h2>
@@ -27,14 +32,14 @@ export default function NextMatch() {
         {/* Match Info */}
         <div
           ref={teamsRef}
-          className="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12 p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg"
+          className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-12 p-4 sm:p-6 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-lg"
         >
           {/* Team 1 */}
           <div className="flex flex-col items-center">
             <Image
               src="/path-to-team1-logo.png"
-              width={80}
-              height={80}
+              width={60}
+              height={60}
               className="rounded-full shadow-md"
               alt="Team 1 Logo"
             />
@@ -42,7 +47,7 @@ export default function NextMatch() {
           </div>
 
           {/* VS Text */}
-          <div className="text-2xl font-bold text-gray-700 dark:text-gray-300">
+          <div className="text-xl sm:text-2xl font-bold text-gray-700 dark:text-gray-300">
             VS
           </div>
 
@@ -50,8 +55,8 @@ export default function NextMatch() {
           <div className="flex flex-col items-center">
             <Image
               src="/path-to-team2-logo.png"
-              width={80}
-              height={80}
+              width={60}
+              height={60}
               className="rounded-full shadow-md"
               alt="Team 2 Logo"
             />
@@ -61,5 +66,4 @@ export default function NextMatch() {
       </div>
     </section>
   );
-              }
-          
+}

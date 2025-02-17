@@ -84,29 +84,33 @@ const ContactPage = () => {
             <FormInput
               name="name"
               placeholder="Name"
-              classname="outline-0 placeholder:text-black"
+              className="outline-0 placeholder:text-black"
               value={formData.name}
               onChange={handleChange}
+              required
             />
             <FormInput
               name="email"
               placeholder="Email"
-              classname="outline-0 placeholder:text-black"
+              className="outline-0 placeholder:text-black"
               value={formData.email}
               onChange={handleChange}
+              required
+              type="email"
             />
             <FormInput
               name="phone"
               placeholder="Phone"
-              classname="outline-0 placeholder:text-black"
+              className="outline-0 placeholder:text-black"
               value={formData.phone}
               onChange={handleChange}
+              type="tel"
             />
 
             {/* Contact Method Selection */}
             <div className="mb-6">
               <h4 className="text-gray-500 mb-2">
-                Preferred method of communication
+                Preferred Method of Communication
               </h4>
               <div className="flex space-x-6">
                 <RadioInput
@@ -134,6 +138,7 @@ const ContactPage = () => {
               value={formData.message}
               onChange={handleChange}
               textarea
+              required
             />
 
             {/* Submit Button */}
@@ -162,24 +167,26 @@ const ContactInfo = ({ icon, text }) => (
 );
 
 // Input Field Component
-const FormInput = ({ name, placeholder, value, onChange, textarea, classname }) =>
+const FormInput = ({ name, placeholder, value, onChange, textarea, required, type = "text", className }) =>
   textarea ? (
     <textarea
       name={name}
       value={value}
       onChange={onChange}
       placeholder={placeholder}
-      className={`w-full p-3 border rounded-lg mb-4 ${classname}`}
+      className={`w-full p-3 border rounded-lg mb-4 ${className}`}
       rows="4"
+      required={required}
     ></textarea>
   ) : (
     <input
       name={name}
-      type="text"
+      type={type}
       value={value}
       onChange={onChange}
       placeholder={placeholder}
-      className={`w-full p-3 border rounded-lg mb-4 ${classname}`}
+      className={`w-full p-3 border rounded-lg mb-4 ${className}`}
+      required={required}
     />
   );
 
@@ -194,6 +201,7 @@ const RadioInput = ({ id, label, name, value, checked, onChange }) => (
       checked={checked}
       onChange={onChange}
       className="hidden"
+      required
     />
     <span className="w-5 h-5 border rounded-full flex items-center justify-center mr-2">
       {checked && <span className="w-3 h-3 bg-yellow-500 rounded-full"></span>}
