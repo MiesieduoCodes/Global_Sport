@@ -1,88 +1,65 @@
 "use client";
+
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { CloudArrowUpIcon, LockClosedIcon, ServerIcon } from "@heroicons/react/20/solid";
 
 // Content JSON
 const contentData = {
-    title: "The Legacy of Global Sport FC",
-    subtitle: "A Journey Through Time and Triumph",
-    description:
-      "From humble beginnings to global dominance, Global Sport FC has carved its name in football history. Explore the milestones, legendary players, and unforgettable moments that define this iconic club.",
-    features: [
-      {
-        icon: CloudArrowUpIcon,
-        title: "Founding Years",
-        description:
-          "Established in 1892, Global Sport FC started as a local club with a passionate following. The early years saw struggles, but determination and a unique playing style set the foundation for future success.",
-      },
-      {
-        icon: LockClosedIcon,
-        title: "Era of Dominance",
-        description:
-          "The mid-20th century marked the club's rise to prominence. With back-to-back league titles and a signature attacking style, Global Sport FC became a powerhouse in domestic and international competitions.",
-      },
-      {
-        icon: ServerIcon,
-        title: "European Glory",
-        description:
-          "Global Sport FC's historic triumphs in continental tournaments solidified its reputation as one of the greatest clubs. Memorable finals, legendary goals, and unwavering fan support shaped its global identity.",
-      },
-      {
-        icon: ServerIcon,
-        title: "European Glory",
-        description:
-          "Global Sport FC's historic triumphs in continental tournaments solidified its reputation as one of the greatest clubs. Memorable finals, legendary goals, and unwavering fan support shaped its global identity.",
-      },
-    ],
-    additionalContent: [
-      {
-        title: "A Club Built on Passion",
-        text: "From the roaring terraces of the home stadium to the countless fans across the world, Global Sport FC is more than a football club—it’s a family. The unity between players and supporters has fueled decades of success.",
-      },
-      {
-        title: "Legendary Players",
-        text: "Icons like John Doe, Alex Striker, and David Maestro have graced the club with their talent. Their contributions on the pitch and dedication off it continue to inspire generations.",
-      },
-      {
-        title: "A Future of Excellence",
-        text: "With a state-of-the-art training facility, a thriving youth academy, and a vision for sustainable success, Global Sport FC is committed to writing new chapters in football history.",
-      },
-      {
-        title: "A Future of Excellence",
-        text: "With a state-of-the-art training facility, a thriving youth academy, and a vision for sustainable success, Global Sport FC is committed to writing new chapters in football history.",
-      },
-      {
-        title: "A Future of Excellence",
-        text: "With a state-of-the-art training facility, a thriving youth academy, and a vision for sustainable success, Global Sport FC is committed to writing new chapters in football history.",
-      },
-    ],
-    images: [
-      {
-        src: "https://images.pexels.com/photos/29185445/pexels-photo-29185445/free-photo-of-children-playing-soccer-in-urban-alleyway.jpeg?auto=compress&cs=tinysrgb&w=600",
-        alt: "Global Sport FC celebrating a championship victory",
-      },
-      {
-        src: "https://images.pexels.com/photos/17258095/pexels-photo-17258095/free-photo-of-exterior-of-the-san-siro-football-stadium-in-milan-italy.jpeg?auto=compress&cs=tinysrgb&w=600",
-        alt: "Legendary players of Global Sport FC",
-      },
-    ],
-  };
-  
-export default function Example() {
+  title: "The Legacy of Global Sport FC",
+  subtitle: "A Journey Through Time and Triumph",
+  description:
+    "From humble beginnings in Kazakhstan to global dominance in Spain, Global Sport FC has carved its name in football history. Explore the milestones, legendary players, and unforgettable moments that define this iconic club.",
+  features: [
+    {
+      icon: CloudArrowUpIcon,
+      title: "Founding Years in Kazakhstan",
+      description:
+        "Established in 1892 in Kazakhstan, Global Sport FC started as a local club with a passionate following. The early years were filled with struggles, but determination and a unique playing style set the foundation for future success. Overcoming challenges, the club slowly began to make its mark on the national stage."
+    },
+    {
+      icon: LockClosedIcon,
+      title: "Rise to Prominence",
+      description:
+        "By the mid-20th century, Global Sport FC had developed into a force to be reckoned with. With tactical innovations and legendary managers, the club won consecutive league titles and built a reputation for fast, attacking football. This era saw the emergence of young talents who would later become icons of the game."
+    },
+    {
+      icon: ServerIcon,
+      title: "European Ascent and Relocation",
+      description:
+        "Seeking greater competition and expansion, the club made the historic decision to relocate to Spain in the 1980s. With its new home in a football-crazy nation, Global Sport FC embraced new challenges. Competing against Europe’s best, they cemented their status as an elite club with memorable victories in domestic and international tournaments."
+    },
+    {
+      icon: ServerIcon,
+      title: "A Legacy of Excellence",
+      description:
+        "Global Sport FC has since become synonymous with success, winning multiple championships and cultivating a worldwide fanbase. The club’s dedication to youth development and innovative tactics has kept it at the pinnacle of the sport."
+    }
+  ],
+  images: [
+    {
+      src: "https://images.pexels.com/photos/29185445/pexels-photo-29185445/free-photo-of-children-playing-soccer-in-urban-alleyway.jpeg?auto=compress&cs=tinysrgb&w=600",
+      alt: "Children playing soccer in an urban alleyway",
+    },
+    {
+      src: "https://images.pexels.com/photos/17258095/pexels-photo-17258095/free-photo-of-exterior-of-the-san-siro-football-stadium-in-milan-italy.jpeg?auto=compress&cs=tinysrgb&w=600",
+      alt: "Exterior of a football stadium",
+    }
+  ]
+};
+
+export default function HistorySection() {
   const sectionRef = useRef(null);
   const imageRefs = useRef([]);
   const textRefs = useRef([]);
 
   useEffect(() => {
-    // GSAP Animation
     gsap.fromTo(
       sectionRef.current,
       { opacity: 0, y: 50 },
       { opacity: 1, y: 0, duration: 1, ease: "power3.out" }
     );
-
-    gsap.fromTo(
+        gsap.fromTo(
       imageRefs.current,
       { opacity: 0, scale: 0.9 },
       { opacity: 1, scale: 1, duration: 1, ease: "power3.out", stagger: 0.3 }
@@ -96,57 +73,34 @@ export default function Example() {
   }, []);
 
   return (
-    <div ref={sectionRef} className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">
-      {/* Header Section */}
+    <div
+      ref={sectionRef}
+      className={`relative isolate overflow-hidden px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0 dark:bg-gray-900 bg-white dark:text-gray-100 text-gray-900`}
+    >
       <div className="mx-auto max-w-7xl text-center px-4 sm:px-6 lg:px-8">
         <p className="text-base font-semibold text-indigo-600">{contentData.subtitle}</p>
-        <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-          {contentData.title}
-        </h1>
-        <p className="mt-6 text-lg text-gray-700">{contentData.description}</p>
+        <h1 className="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">{contentData.title}</h1>
+        <p className="mt-6 text-lg">{contentData.description}</p>
       </div>
-
-      {/* Images and Features */}
+      
       <div className="mt-12 grid grid-cols-1 gap-10 p-6 lg:grid-cols-2 lg:gap-x-8">
-        {/* Image 1 */}
         <div className="flex justify-center">
           <img
             ref={(el) => imageRefs.current.push(el)}
             src={contentData.images[0].src}
             alt={contentData.images[0].alt}
-            className="w-[48rem] max-w-full rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10"
+            className="w-[48rem] max-w-full rounded-xl shadow-xl ring-1 ring-gray-400/10"
           />
         </div>
-
-        {/* Features List */}
-        <div className="max-w-lg text-gray-700">
+        
+        <div className="max-w-lg">
           {contentData.features.map((feature, index) => (
             <div key={index} className="flex gap-x-3 mt-6" ref={(el) => textRefs.current.push(el)}>
-              <feature.icon className="mt-1 h-6 w-6 text-indigo-600" />
+              <feature.icon className="mt-1 text-3xl  h-6 w-6 text-indigo-600" />
               <div>
-                <h3 className="font-semibold text-gray-900">{feature.title}</h3>
-                <p className="text-gray-700">{feature.description}</p>
+                <h3 className="font-semibold">{feature.title}</h3>
+                <p>{feature.description}</p>
               </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Additional Image */}
-        <div className="flex justify-center">
-          <img
-            ref={(el) => imageRefs.current.push(el)}
-            src={contentData.images[1].src}
-            alt={contentData.images[1].alt}
-            className="w-[48rem] max-w-full rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10"
-          />
-        </div>
-
-        {/* Additional Content */}
-        <div className="max-w-lg text-gray-700">
-          {contentData.additionalContent.map((section, index) => (
-            <div key={index} ref={(el) => textRefs.current.push(el)}>
-              <h2 className="mt-10 text-2xl font-bold tracking-tight text-gray-900">{section.title}</h2>
-              <p className="mt-4">{section.text}</p>
             </div>
           ))}
         </div>

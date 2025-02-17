@@ -75,19 +75,19 @@ const Navbar = () => {
             ? "top-8 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-md"
             : "top-12 bg-transparent"
         }`}
+        style={{ zIndex: 50 }}
       >
         <div className="container mx-auto px-4 lg:px-8 flex justify-between items-center h-20">
           {/* Logo */}
-          <TransitionLink
-            href={menuData.teams[0].url}
-            className="relative h-16 w-48"
-          >
+          <TransitionLink href="/" className="relative h-16 w-48">
             <Image
-              src="/images/Logo.jpg" // Ensure this file exists in your /public/images folder
+              src="/images/Logo.jpg"
               alt="Global Sports FC Logo"
               fill
+              sizes="(max-width: 768px) 100vw, 192px"
               className="object-contain hover:opacity-80 transition-opacity"
               priority
+              style={{ position: 'absolute' }}
             />
           </TransitionLink>
 
@@ -120,7 +120,7 @@ const Navbar = () => {
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
-                          className="absolute top-full left-0 min-w-[240px] bg-white dark:bg-gray-800 shadow-xl rounded-lg p-2 border border-gray-100 dark:border-gray-700"
+                          className="absolute top-full left-0 min-w-[240px] bg-white dark:bg-gray-800 shadow-xl rounded-lg p-2 border border-gray-100 dark:border-gray-700 z-30"
                           id={`dropdown-${index}`}
                         >
                           {item.items.map((subItem, subIndex) => (
@@ -171,7 +171,7 @@ const Navbar = () => {
               initial={{ opacity: 0, x: "100%" }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: "100%" }}
-              className="lg:hidden fixed inset-0 bg-white dark:bg-gray-900 z-50 p-6"
+              className="lg:hidden fixed inset-0 bg-gray-100 dark:bg-gray-800  z-50 p-6"
             >
               <div className="flex justify-end mb-8">
                 <button
