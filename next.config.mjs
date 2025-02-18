@@ -10,6 +10,10 @@ const nextConfig = {
       'instagram.flos5-2.fna.fbcdn.net',
     ],
   },
+  i18n: {
+    locales: ['en', 'es'], // Add your supported locales here
+    defaultLocale: 'en', // Set your default locale
+  },
 };
 
 // Export the configuration with the Next Intl plugin

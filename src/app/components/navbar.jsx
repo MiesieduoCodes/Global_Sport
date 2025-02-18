@@ -7,8 +7,6 @@ import { useTheme } from "next-themes";
 import { ModeToggle } from "@/app/components/mode-toggle";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import LanguageSelector from "@/app/components/LanguageSelector";
-import { useLanguage } from "@/app/context/LanguageContext";
 
 const Navbar = () => {
   const [menuData, setMenuData] = useState(null);
@@ -16,7 +14,6 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
-  const { currentLanguage, changeLanguage } = useLanguage();
 
   useEffect(() => {
     setMenuData(Navdata);
@@ -148,10 +145,6 @@ const Navbar = () => {
               </div>
             ))}
             <ModeToggle />
-            <LanguageSelector
-              currentLanguage={currentLanguage}
-              onLanguageChange={changeLanguage}
-            />
           </div>
 
           {/* Mobile Menu Button */}
