@@ -1,17 +1,14 @@
-// context/LanguageContext.js
+// app/context/LanguageContext.js
 "use client";
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from "react";
 
-// Create a Language Context
 const LanguageContext = createContext();
 
-// Create a provider component
 export const LanguageProvider = ({ children }) => {
-  const [currentLanguage, setCurrentLanguage] = useState('en'); // Default language
+  const [currentLanguage, setCurrentLanguage] = useState("en");
 
   const changeLanguage = (lang) => {
     setCurrentLanguage(lang);
-    // You can add additional logic here for translation handling
   };
 
   return (
@@ -21,7 +18,4 @@ export const LanguageProvider = ({ children }) => {
   );
 };
 
-// Custom hook to use the Language Context
-export const useLanguage = () => {
-  return useContext(LanguageContext);
-};
+export const useLanguage = () => useContext(LanguageContext);
