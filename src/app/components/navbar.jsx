@@ -43,24 +43,29 @@ const Navbar = () => {
   const { theme } = useTheme();
 
   return (
-    <nav className="fixed top-0 w-full bg-white dark:bg-gray-900 shadow-md z-50">
+    <nav className="fixed top-0 w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-md z-50">
       <div className="container mx-auto px-4 lg:px-8 flex justify-between items-center h-16">
         {/* ✅ Logo */}
-        <Link href="/" className="text-xl font-bold">
+        <Link href="/" className="text-xl font-bold text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
           Global Sports FC
         </Link>
 
         {/* ✅ Desktop Menu */}
-        <div className="hidden lg:flex items-center space-x-8">
+        <div className="hidden lg:flex items-center space-x-6">
           {Navdata.navMain.map((item, index) => (
             <div key={index} className="relative group">
               {item.items ? (
                 <>
                   <button
                     onClick={() => setActiveDropdown(index === activeDropdown ? null : index)}
-                    className="flex items-center px-4 py-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+                    className="flex items-center px-4 py-2 text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
                   >
-                    {item.title} <ChevronDown className="w-4 h-4 ml-2" />
+                    {item.title}{" "}
+                    <ChevronDown
+                      className={`w-4 h-4 ml-2 transition-transform ${
+                        activeDropdown === index ? "rotate-180" : ""
+                      }`}
+                    />
                   </button>
                   <AnimatePresence>
                     {activeDropdown === index && (
@@ -68,13 +73,13 @@ const Navbar = () => {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        className="absolute top-full left-0 bg-white dark:bg-gray-800 shadow-md rounded"
+                        className="absolute top-full left-0 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-2 min-w-[200px] z-50"
                       >
                         {item.items.map((subItem, subIndex) => (
                           <Link
                             key={subIndex}
                             href={subItem.url}
-                            className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700"
+                            className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-md transition-colors"
                           >
                             {subItem.title}
                           </Link>
@@ -84,7 +89,10 @@ const Navbar = () => {
                   </AnimatePresence>
                 </>
               ) : (
-                <Link href={item.url} className="px-4 py-2 hover:text-blue-600 dark:hover:text-blue-400">
+                <Link
+                  href={item.url}
+                  className="px-4 py-2 text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+                >
                   {item.title}
                 </Link>
               )}
@@ -94,7 +102,10 @@ const Navbar = () => {
         </div>
 
         {/* ✅ Mobile Menu Button */}
-        <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden">
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="lg:hidden p-2 text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        >
           {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
@@ -106,36 +117,57 @@ const Navbar = () => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="lg:hidden bg-white dark:bg-gray-900 p-4"
+            className="lg:hidden bg-white dark:bg-gray-900 shadow-lg"
           >
-            {Navdata.navMain.map((item, index) => (
-              <div key={index} className="mb-4">
-                {item.items ? (
-                  <>
-                    <button
-                      onClick={() => setActiveDropdown(index === activeDropdown ? null : index)}
-                      className="flex w-full px-4 py-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+            <div className="container mx-auto px-4 py-4">
+              {Navdata.navMain.map((item, index) => (
+                <div key={index} className="mb-2">
+                  {item.items ? (
+                    <>
+                      <button
+                        onClick={() => setActiveDropdown(index === activeDropdown ? null : index)}
+                        className="flex w-full items-center justify-between px-4 py-2 text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
+                      >
+                        {item.title}{" "}
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform ${
+                            activeDropdown === index ? "rotate-180" : ""
+                          }`}
+                        />
+                      </button>
+                      {activeDropdown === index && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="pl-4"
+                        >
+                          {item.items.map((subItem, subIndex) => (
+                            <Link
+                              key={subIndex}
+                              href={subItem.url}
+                              className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-md transition-colors"
+                            >
+                              {subItem.title}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      href={item.url}
+                      className="block px-4 py-2 text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
                     >
-                      {item.title} <ChevronDown className="w-4 h-4 ml-2" />
-                    </button>
-                    {activeDropdown === index && (
-                      <motion.div className="pl-4">
-                        {item.items.map((subItem, subIndex) => (
-                          <Link key={subIndex} href={subItem.url} className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700">
-                            {subItem.title}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </>
-                ) : (
-                  <Link href={item.url} className="block px-4 py-2 hover:text-blue-600 dark:hover:text-blue-400">
-                    {item.title}
-                  </Link>
-                )}
+                      {item.title}
+                    </Link>
+                  )}
+                </div>
+              ))}
+              <div className="px-4 py-2">
+                <ModeToggle />
               </div>
-            ))}
-            <ModeToggle />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
