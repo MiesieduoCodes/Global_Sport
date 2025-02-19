@@ -82,9 +82,9 @@ const Hero = () => {
   
   // Dynamic images from your storage
   const images = [
-    "/images/image1.jpg",
-    "/images/image2.jpg",
-    "/images/image3.jpg",
+    "/images/IMG-20250219-WA0077.jpg",
+    "/images/IMG-20250219-WA0099.jpg",
+    "/images/IMG-20250219-WA0069.jpg",
   ];
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
