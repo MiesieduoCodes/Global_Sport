@@ -1,30 +1,88 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/app/context/LanguageContext";
 
-const Hero = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-
-  const slides = [
+const translations = {
+  en: [
     {
       title: "Feel the Passion of Football",
       text: "Experience the thrill of every match, every goal, every moment.",
       buttonText: "Join the Game",
-      bgImage: "https://images.pexels.com/photos/1884574/pexels-photo-1884574.jpeg",
     },
     {
       title: "Legends Are Made Here",
       text: "Follow the journey of football icons and rising stars.",
       buttonText: "Discover More",
-      bgImage: "https://images.pexels.com/photos/262524/pexels-photo-262524.jpeg",
     },
     {
       title: "Every Kick Counts",
       text: "From local pitches to world championships, football unites us all.",
       buttonText: "Be Part of It",
-      bgImage: "https://images.pexels.com/photos/50713/football-ball-sport-soccer-50713.jpeg",
     },
-  ];
+  ],
+
+  ru: [
+    {
+      title: "Почувствуйте страсть футбола",
+      text: "Ощутите азарт каждого матча, каждого гола, каждого момента.",
+      buttonText: "Присоединяйтесь к игре",
+    },
+    {
+      title: "Легенды рождаются здесь",
+      text: "Следите за путешествием футбольных икон и восходящих звезд.",
+      buttonText: "Узнать больше",
+    },
+    {
+      title: "Каждый удар имеет значение",
+      text: "От местных полей до мировых чемпионатов, футбол объединяет нас всех.",
+      buttonText: "Будьте частью",
+    },
+  ],
+
+  fr: [
+    {
+      title: "Ressentez la passion du football",
+      text: "Vivez l'excitation de chaque match, chaque but, chaque moment.",
+      buttonText: "Rejoignez le jeu",
+    },
+    {
+      title: "Les légendes naissent ici",
+      text: "Suivez le parcours des icônes du football et des étoiles montantes.",
+      buttonText: "Découvrir plus",
+    },
+    {
+      title: "Chaque coup compte",
+      text: "Des terrains locaux aux championnats du monde, le football nous unit tous.",
+      buttonText: "Faites-en partie",
+    },
+  ],
+
+  es: [
+    {
+      title: "Siente la pasión del fútbol",
+      text: "Vive la emoción de cada partido, cada gol, cada momento.",
+      buttonText: "Únete al juego",
+    },
+    {
+      title: "Las leyendas nacen aquí",
+      text: "Sigue el viaje de los íconos del fútbol y las estrellas emergentes.",
+      buttonText: "Descubre más",
+    },
+    {
+      title: "Cada golpe cuenta",
+      text: "Desde los campos locales hasta los campeonatos mundiales, el fútbol nos une a todos.",
+      buttonText: "Sé parte de ello",
+    },
+  ],
+
+};
+
+const Hero = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const { language } = useLanguage();
+  const slides = translations[language];
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
 
@@ -39,7 +97,11 @@ const Hero = () => {
         <motion.div
           key={currentSlide}
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${slides[currentSlide].bgImage})` }}
+          style={{
+            backgroundImage: `url(https://images.pexels.com/photos/${
+              [1884574, 262524, 50713][currentSlide]
+            }/pexels-photo-${[1884574, 262524, 50713][currentSlide]}.jpeg)`,
+          }}
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 1.05 }}
@@ -60,7 +122,7 @@ const Hero = () => {
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-xl">
                 {slides[currentSlide].title}
               </h1>
-              
+
               <motion.p
                 className="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto drop-shadow-md"
                 initial={{ opacity: 0 }}

@@ -1,18 +1,14 @@
-// app/context/LanguageContext.js
 "use client";
-import React, { createContext, useContext, useState } from "react";
+
+import { createContext, useContext, useState } from "react";
 
 const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
-  const [currentLanguage, setCurrentLanguage] = useState("en");
-
-  const changeLanguage = (lang) => {
-    setCurrentLanguage(lang);
-  };
+  const [language, setLanguage] = useState("en");
 
   return (
-    <LanguageContext.Provider value={{ currentLanguage, changeLanguage }}>
+    <LanguageContext.Provider value={{ language, setLanguage }}>
       {children}
     </LanguageContext.Provider>
   );

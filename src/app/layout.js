@@ -1,21 +1,20 @@
+"use client";
 import "./globals.css";
 import Navbar from "@/app/components/navbar";
 import Footer from "@/app/components/footer";
 import { ThemeProvider } from "@/app/components/theme-provider";
-import { LanguageProvider } from "@/app/context/LanguageContext";
-
-export const metadata = {
-  title: "Global Sports FC",
-  description: "The Official Website for Global Sports FC",
-};
+import { LanguageProvider } from "@/app/context/LanguageContext"; // Import LanguageProvider
+import React from "react";
+import { metadata } from "./metadata";
+import Head from "next/head";
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
+      <Head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
-      </head>
+      </Head>
       <body className="min-h-screen">
         <ThemeProvider
           attribute="class"
@@ -23,7 +22,7 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
-          <LanguageProvider>
+          <LanguageProvider> {/* Wrap the entire app */}
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />

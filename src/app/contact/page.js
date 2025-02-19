@@ -9,6 +9,89 @@ const SERVICE_ID = "service_mofzwum";
 const TEMPLATE_ID = "template_ormpbz2";
 const USER_ID = "a1NybmXRcYdkYXTu6";
 
+const translations = {
+  en: {
+    contactUs: "Contact Us",
+    sendMessage: "Send Us A Message",
+    namePlaceholder: "Name",
+    emailPlaceholder: "Email",
+    phonePlaceholder: "Phone",
+    messagePlaceholder: "Message",
+    preferredMethod: "Preferred Method of Communication",
+    email: "Email",
+    phone: "Phone",
+    sending: "Sending...",
+    sendMessageButton: "Send Message",
+    successMessage: "✅ Your message has been sent successfully!",
+    errorMessage: "❌ Something went wrong. Please try again.",
+    contactInfo: {
+      phone: "+77273274755, +77025895922",
+      email: "globalsportint2017@gmail.com , info@gsfc.com",
+      location: "Kazakhstan",
+    },
+  },
+  ru: {
+    contactUs: "Свяжитесь с нами",
+    sendMessage: "Отправьте нам сообщение",
+    namePlaceholder: "Имя",
+    emailPlaceholder: "Электронная почта",
+    phonePlaceholder: "Телефон",
+    messagePlaceholder: "Сообщение",
+    preferredMethod: "Предпочтительный способ связи",
+    email: "Электронная почта",
+    phone: "Телефон",
+    sending: "Отправка...",
+    sendMessageButton: "Отправить сообщение",
+    successMessage: "✅ Ваше сообщение было успешно отправлено!",
+    errorMessage: "❌ Что-то пошло не так. Пожалуйста, попробуйте снова.",
+    contactInfo: {
+      phone: "+77273274755, +77025895922",
+      email: "globalsportint2017@gmail.com , info@gsfc.com",
+      location: "Казахстан",
+    },
+  },
+  fr: {
+    contactUs: "Contactez-nous",
+    sendMessage: "Envoyez-nous un message",
+    namePlaceholder: "Nom",
+    emailPlaceholder: "Email",
+    phonePlaceholder: "Téléphone",
+    messagePlaceholder: "Message",
+    preferredMethod: "Méthode de communication préférée",
+    email: "Email",
+    phone: "Téléphone",
+    sending: "Envoi...",
+    sendMessageButton: "Envoyer le message",
+    successMessage: "✅ Votre message a été envoyé avec succès !",
+    errorMessage: "❌ Une erreur s'est produite. Veuillez réessayer.",
+    contactInfo: {
+      phone: "+77273274755, +77025895922",
+      email: "globalsportint2017@gmail.com , info@gsfc.com",
+      location: "Kazakhstan",
+    },
+  },
+  es: {
+    contactUs: "Contáctanos",
+    sendMessage: "Envíanos un mensaje",
+    namePlaceholder: "Nombre",
+    emailPlaceholder: "Correo electrónico",
+    phonePlaceholder: "Teléfono",
+    messagePlaceholder: "Mensaje",
+    preferredMethod: "Método de comunicación preferido",
+    email: "Correo electrónico",
+    phone: "Teléfono",
+    sending: "Enviando...",
+    sendMessageButton: "Enviar mensaje",
+    successMessage: "✅ ¡Tu mensaje se ha enviado con éxito!",
+    errorMessage: "❌ Algo salió mal. Por favor, inténtalo de nuevo.",
+    contactInfo: {
+      phone: "+77273274755, +77025895922",
+      email: "globalsportint2017@gmail.com , info@gsfc.com",
+      location: "Kazajistán",
+    },
+  },
+};
+
 const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -18,6 +101,8 @@ const ContactPage = () => {
     contactMethod: "email",
   });
   const [isSending, setIsSending] = useState(false);
+  const { language } = useLanguage(); // Get the current language from context
+  const content = translations[language] || translations.en; // Default to English
 
   // Handle Input Changes
   const handleChange = (e) => {
@@ -35,7 +120,7 @@ const ContactPage = () => {
       .then(
         () => {
           setIsSending(false);
-          toast.success("✅ Your message has been sent successfully!");
+          toast.success(content.successMessage);
           setFormData({
             name: "",
             email: "",
@@ -47,7 +132,7 @@ const ContactPage = () => {
         (error) => {
           console.error("EmailJS Error:", error);
           setIsSending(false);
-          toast.error("❌ Something went wrong. Please try again.");
+          toast.error(content.errorMessage);
         }
       );
   };
@@ -59,31 +144,31 @@ const ContactPage = () => {
         <div className="relative">
           <img
             src="https://images.pexels.com/photos/30393828/pexels-photo-30393828/free-photo-of-competitive-soccer-match-on-a-sunny-day.jpeg?auto=compress&cs=tinysrgb&w=600"
-            alt="Contact Us"
+            alt={content.contactUs}
             className="w-full h-full rounded-2xl object-cover"
           />
           <h1 className="absolute top-10 left-10 text-white text-4xl font-bold">
-            Contact Us
+            {content.contactUs}
           </h1>
           <div className="absolute bottom-0 p-6 w-full bg-white rounded-lg shadow-lg">
-            <ContactInfo icon="📞" text="+77273274755, +77025895922" />
+            <ContactInfo icon="📞" text={content.contactInfo.phone} />
             <ContactInfo
               icon="📧"
-              text="globalsportint2017@gmail.com , info@gsfc.com"
+              text={content.contactInfo.email}
             />
-            <ContactInfo icon="📍" text="Kazakhstan" />
+            <ContactInfo icon="📍" text={content.contactInfo.location} />
           </div>
         </div>
 
         {/* Contact Form */}
         <div className="bg-gray-500 rounded-2xl shadow-lg p-6">
           <h2 className="text-yellow-500 text-3xl font-semibold mb-6">
-            Send Us A Message
+            {content.sendMessage}
           </h2>
           <form onSubmit={handleSubmit}>
             <FormInput
               name="name"
-              placeholder="Name"
+              placeholder={content.namePlaceholder}
               className="outline-0 placeholder:text-black"
               value={formData.name}
               onChange={handleChange}
@@ -91,7 +176,7 @@ const ContactPage = () => {
             />
             <FormInput
               name="email"
-              placeholder="Email"
+              placeholder={content.emailPlaceholder}
               className="outline-0 placeholder:text-black"
               value={formData.email}
               onChange={handleChange}
@@ -100,7 +185,7 @@ const ContactPage = () => {
             />
             <FormInput
               name="phone"
-              placeholder="Phone"
+              placeholder={content.phonePlaceholder}
               className="outline-0 placeholder:text-black"
               value={formData.phone}
               onChange={handleChange}
@@ -110,12 +195,12 @@ const ContactPage = () => {
             {/* Contact Method Selection */}
             <div className="mb-6">
               <h4 className="text-gray-500 mb-2">
-                Preferred Method of Communication
+                {content.preferredMethod}
               </h4>
               <div className="flex space-x-6">
                 <RadioInput
                   id="email"
-                  label="Email"
+                  label={content.email}
                   name="contactMethod"
                   value="email"
                   checked={formData.contactMethod === "email"}
@@ -123,7 +208,7 @@ const ContactPage = () => {
                 />
                 <RadioInput
                   id="phone"
-                  label="Phone"
+                  label={content.phone}
                   name="contactMethod"
                   value="phone"
                   checked={formData.contactMethod === "phone"}
@@ -134,7 +219,7 @@ const ContactPage = () => {
 
             <FormInput
               name="message"
-              placeholder="Message"
+              placeholder={content.messagePlaceholder}
               value={formData.message}
               onChange={handleChange}
               textarea
@@ -147,7 +232,7 @@ const ContactPage = () => {
               className="w-full bg-yellow-500 text-white py-3 rounded-lg shadow-lg hover:bg-yellow-600 transition"
               disabled={isSending}
             >
-              {isSending ? "Sending..." : "Send Message"}
+              {isSending ? content.sending : content.sendMessageButton}
             </button>
           </form>
         </div>
