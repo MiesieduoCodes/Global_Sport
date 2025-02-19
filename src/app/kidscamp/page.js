@@ -171,8 +171,8 @@ const KidsClubPage = () => {
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition-colors duration-300">
               <Quote className="w-8 h-8 text-yellow-500 dark:text-yellow-400 mb-4" />
               <p className="text-gray-600 dark:text-gray-300 mb-4">
-                "My son's confidence has grown tremendously since joining. The coaches
-                are amazing at nurturing young talent!"
+                &quot;My son&apos;s confidence has grown tremendously since joining. The coaches
+                are amazing at nurturing young talent!&quot;
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 relative rounded-full overflow-hidden mr-3">
@@ -192,8 +192,8 @@ const KidsClubPage = () => {
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition-colors duration-300">
               <Quote className="w-8 h-8 text-yellow-500 dark:text-yellow-400 mb-4" />
               <p className="text-gray-600 dark:text-gray-300 mb-4">
-                "The best football academy in the region! My daughter looks forward
-                to every training session."
+                &quot;The best football academy in the region! My daughter looks forward
+                to every training session.&quot;
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 relative rounded-full overflow-hidden mr-3">
