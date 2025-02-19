@@ -14,20 +14,24 @@ const Navbar = () => {
   const { theme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // Load menu data
   useEffect(() => {
     setMenuData(Navdata);
   }, []);
 
+  // Handle scroll behavior
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Toggle dropdown for desktop
   const toggleDropdown = (index) => {
     setActiveDropdownIndex((prev) => (prev === index ? null : index));
   };
 
+  // Close mobile menu
   const closeMobileMenu = () => setIsMobileMenuOpen(false);
 
   if (!menuData) return <div className="h-16" />;
@@ -57,12 +61,11 @@ const Navbar = () => {
 
       {/* Main Navigation */}
       <nav
-        className={`fixed w-full z-50 transition-all duration-300 ${
+        className={`fixed w-full z-40 transition-all duration-300 ${
           isScrolled
             ? "top-8 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-md"
             : "top-12 bg-transparent"
         }`}
-        style={{ zIndex: 50 }}
       >
         <div className="container mx-auto px-4 lg:px-8 flex justify-between items-center h-20">
           {/* Logo */}
