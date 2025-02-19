@@ -3,7 +3,6 @@ import "./globals.css";
 import Navbar from "@/app/components/navbar";
 import Footer from "@/app/components/footer";
 import { ThemeProvider } from "@/app/components/theme-provider";
-
 import { LanguageProvider } from "@/app/context/LanguageContext"; // Import LanguageProvider
 import React from "react";
 import { metadata } from "./metadata";
@@ -11,7 +10,6 @@ import Head from "next/head";
 
 export default function RootLayout({ children }) {
   return (
-    <LanguageProvider> {/* Wrap the entire app */}
     <html lang="en" suppressHydrationWarning>
       <Head>
         <title>{metadata.title}</title>
@@ -22,13 +20,15 @@ export default function RootLayout({ children }) {
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange>
+          disableTransitionOnChange
+        >
+          <LanguageProvider> {/* Wrap the entire app */}
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>
-    </LanguageProvider>
   );
 }
