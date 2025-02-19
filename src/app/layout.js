@@ -3,18 +3,20 @@ import "./globals.css";
 import Navbar from "@/app/components/navbar";
 import Footer from "@/app/components/footer";
 import { ThemeProvider } from "@/app/components/theme-provider";
-import { LanguageProvider } from "@/app/context/LanguageContext"; // Import LanguageProvider
+import { LanguageProvider, useLanguage } from "@/app/context/LanguageContext"; // Import useLanguage
 import React from "react";
 import { metadata } from "./metadata";
 import Head from "next/head";
 
-export default function RootLayout({ children }) {
+function LayoutWrapper({ children }) {
+  const { language } = useLanguage(); // Get current language
+
   return (
-    <html lang="en" suppressHydrationWarning>
-      <Head>
+    <html lang={language} suppressHydrationWarning>
+      <head>
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
-      </Head>
+      </head>
       <body className="min-h-screen">
         <ThemeProvider
           attribute="class"
@@ -22,13 +24,19 @@ export default function RootLayout({ children }) {
           enableSystem
           disableTransitionOnChange
         >
-          <LanguageProvider> {/* Wrap the entire app */}
-            <Navbar />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </LanguageProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
+  );
+}
+
+export default function RootLayout({ children }) {
+  return (
+    <LanguageProvider>
+      <LayoutWrapper>{children}</LayoutWrapper>
+    </LanguageProvider>
   );
 }
