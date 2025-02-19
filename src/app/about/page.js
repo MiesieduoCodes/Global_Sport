@@ -127,7 +127,7 @@ export default function JoinOurTeam() {
       </div>
 
       {/* Legends Section */}
-      <section className="mt-20 text-center">
+      <section className="mt-20 p-5 text-center">
         <h2 className="text-4xl font-bold">Meet Our Legends</h2>
         <div className="flex justify-center gap-10 mt-10">
           {legends.map((legend) => (

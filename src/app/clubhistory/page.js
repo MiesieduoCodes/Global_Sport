@@ -104,7 +104,18 @@ export default function HistorySection() {
             </div>
           ))}
         </div>
+
+        <div className="flex justify-center">
+          <img
+            ref={(el) => imageRefs.current.push(el)}
+            src={contentData.images[0].src}
+            alt={contentData.images[0].alt}
+            className="w-[48rem] max-w-full rounded-xl shadow-xl ring-1 ring-gray-400/10"
+          />
+        </div>
       </div>
+
+
     </div>
   );
 }
