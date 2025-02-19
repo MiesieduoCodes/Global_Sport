@@ -1,9 +1,136 @@
 "use client";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { Footprints, Trophy, Ticket, Shirt, Quote, Sun } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+const translations = {
+  en: {
+    title: "Global Sports Junior Academy",
+    subtitle: "Where Future Champions Are Made!",
+    agePrograms: "Age-Specific Programs",
+    juniorChampions: "Our Junior Champions",
+    testimonials: "Parent & Player Testimonials",
+    faq: "Frequently Asked Questions",
+    joinAcademy: "Join Our Junior Academy",
+    parentName: "Parent/Guardian Name",
+    childName: "Child's Name",
+    childAge: "Child's Age",
+    medicalInfo: "Medical Information",
+    registerNow: "Register Now",
+    submitting: "Submitting...",
+    successMessage: "Registration successful! We'll be in touch soon.",
+    errorMessage: "Error submitting form. Please try again.",
+    faqItems: [
+      {
+        question: "What age groups do you accept?",
+        answer: "We accept children aged 5-12 years old, divided into three age-specific groups."
+      },
+      {
+        question: "What should my child bring to training?",
+        answer: "Comfortable sports clothes, football boots, shin guards, and a water bottle."
+      },
+      {
+        question: "Are your coaches certified?",
+        answer: "All our coaches hold FA Level 2 certifications and have passed DBS checks."
+      }
+    ]
+  },
+  ru: {
+    title: "Юниорская академия Global Sports",
+    subtitle: "Где рождаются будущие чемпионы!",
+    agePrograms: "Программы по возрастным группам",
+    juniorChampions: "Наши юные чемпионы",
+    testimonials: "Отзывы родителей и игроков",
+    faq: "Часто задаваемые вопросы",
+    joinAcademy: "Присоединяйтесь к нашей юниорской академии",
+    parentName: "Имя родителя/опекуна",
+    childName: "Имя ребенка",
+    childAge: "Возраст ребенка",
+    medicalInfo: "Медицинская информация",
+    registerNow: "Зарегистрироваться сейчас",
+    submitting: "Отправка...",
+    successMessage: "Регистрация успешна! Мы свяжемся с вами в ближайшее время.",
+    errorMessage: "Ошибка при отправке формы. Пожалуйста, попробуйте снова.",
+    faqItems: [
+      {
+        question: "Какие возрастные группы вы принимаете?",
+        answer: "Мы принимаем детей в возрасте от 5 до 12 лет, разделенных на три возрастные группы."
+      },
+      {
+        question: "Что должен принести мой ребенок на тренировки?",
+        answer: "Удобная спортивная одежда, футбольные бутсы, щитки и бутылка с водой."
+      },
+      {
+        question: "Ваши тренеры сертифицированы?",
+        answer: "Все наши тренеры имеют сертификаты FA уровня 2 и прошли проверки DBS."
+      }
+    ]
+  },
+  fr: {
+    title: "Académie Junior de Global Sports",
+    subtitle: "Où les futurs champions sont formés !",
+    agePrograms: "Programmes par tranche d'âge",
+    juniorChampions: "Nos Jeunes Champions",
+    testimonials: "Témoignages des Parents et des Joueurs",
+    faq: "Questions Fréquemment Posées",
+    joinAcademy: "Rejoignez notre Académie Junior",
+    parentName: "Nom du Parent/Guardian",
+    childName: "Nom de l'Enfant",
+    childAge: "Âge de l'Enfant",
+    medicalInfo: "Informations Médicales",
+    registerNow: "Inscrivez-vous Maintenant",
+    submitting: "Soumission...",
+    successMessage: "Inscription réussie ! Nous vous contacterons bientôt.",
+    errorMessage: "Erreur lors de l'envoi du formulaire. Veuillez réessayer.",
+    faqItems: [
+      {
+        question: "Quels groupes d'âge acceptez-vous ?",
+        answer: "Nous acceptons les enfants âgés de 5 à 12 ans, répartis en trois groupes d'âge spécifiques."
+      },
+      {
+        question: "Que doit apporter mon enfant à l'entraînement ?",
+        answer: "Vêtements de sport confortables, chaussures de football, protège-tibias et une bouteille d'eau."
+      },
+      {
+        question: "Vos entraîneurs sont-ils certifiés ?",
+        answer: "Tous nos entraîneurs détiennent des certifications FA de niveau 2 et ont passé des vérifications DBS."
+      }
+    ]
+  },
+  es: {
+    title: "Academia Junior de Global Sports",
+    subtitle: "¡Donde se forman los futuros campeones!",
+    agePrograms: "Programas por Edad",
+    juniorChampions: "Nuestros Campeones Junior",
+    testimonials: "Testimonios de Padres y Jugadores",
+    faq: "Preguntas Frecuentes",
+    joinAcademy: "Únete a Nuestra Academia Junior",
+    parentName: "Nombre del Padre/Responsable",
+    childName: "Nombre del Niño",
+    childAge: "Edad del Niño",
+    medicalInfo: "Información Médica",
+    registerNow: "Regístrate Ahora",
+    submitting: "Enviando...",
+    successMessage: "¡Registro exitoso! Nos pondremos en contacto pronto.",
+    errorMessage: "Error al enviar el formulario. Por favor, inténtalo de nuevo.",
+    faqItems: [
+      {
+        question: "¿Qué grupos de edad aceptan?",
+        answer: "Aceptamos niños de 5 a 12 años, divididos en tres grupos específicos por edad."
+      },
+      {
+        question: "¿Qué debe traer mi hijo a la práctica?",
+        answer: "Ropa deportiva cómoda, botas de fútbol, espinilleras y una botella de agua."
+      },
+      {
+        question: "¿Sus entrenadores están certificados?",
+        answer: "Todos nuestros entrenadores tienen certificaciones FA de nivel 2 y han pasado verificaciones DBS."
+      }
+    ]
+  },
+  // Add translations for French (fr) and Spanish (es) in the same way
+};
 
 const KidsClubPage = () => {
   const [formData, setFormData] = useState({
@@ -15,25 +142,12 @@ const KidsClubPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const [isMounted, setIsMounted] = useState(false);
+  const { language } = useLanguage(); // Get current language from context
+  const content = translations[language] || translations.en; // Default to English
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
-
-  const faqItems = [
-    {
-      question: "What age groups do you accept?",
-      answer: "We accept children aged 5-12 years old, divided into three age-specific groups."
-    },
-    {
-      question: "What should my child bring to training?",
-      answer: "Comfortable sports clothes, football boots, shin guards, and a water bottle."
-    },
-    {
-      question: "Are your coaches certified?",
-      answer: "All our coaches hold FA Level 2 certifications and have passed DBS checks."
-    }
-  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +163,7 @@ const KidsClubPage = () => {
       });
       
       if (response.ok) {
-        toast.success("Registration successful! We'll be in touch soon.", {
+        toast.success(content.successMessage, {
           position: "top-center",
           autoClose: 5000,
           theme: "colored",
@@ -61,7 +175,7 @@ const KidsClubPage = () => {
           medicalInfo: ""
         });
       } else {
-        toast.error("Error submitting form. Please try again.", {
+        toast.error(content.errorMessage, {
           position: "top-center",
           autoClose: 5000,
           theme: "colored",
@@ -91,10 +205,10 @@ const KidsClubPage = () => {
         <div className="container mx-auto px-4 h-full flex items-center justify-center">
           <div className="text-center z-10">
             <h1 className="text-4xl md:text-6xl font-bold mb-4 bg-yellow-500 dark:bg-yellow-600 px-6 py-2 rounded-lg">
-              Global Sports FC Junior Academy
+              {content.title}
             </h1>
             <p className="text-xl md:text-2xl text-yellow-300 dark:text-yellow-400">
-              Where Future Champions Are Made!
+              {content.subtitle}
             </p>
           </div>
           <div className="absolute inset-0 opacity-20 dark:opacity-10">
@@ -113,9 +227,10 @@ const KidsClubPage = () => {
         {/* Age Groups Section */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-8 text-blue-700 dark:text-blue-400">
-            Age-Specific Programs
+            {content.agePrograms}
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
+            {/* Age Group Cards */}
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border-t-4 border-yellow-500 transition-colors duration-300">
               <h3 className="text-xl font-semibold mb-4 text-blue-700 dark:text-blue-300">5-7 Years</h3>
               <ul className="space-y-2 text-gray-600 dark:text-gray-300">
@@ -146,7 +261,7 @@ const KidsClubPage = () => {
         {/* Gallery Section */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-8 text-blue-700 dark:text-blue-400">
-            Our Junior Champions
+            {content.juniorChampions}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {[1,2,3,4,5,6].map((item) => (
@@ -165,7 +280,7 @@ const KidsClubPage = () => {
         {/* Testimonials Section */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-8 text-blue-700 dark:text-blue-400">
-            Parent & Player Testimonials
+            {content.testimonials}
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition-colors duration-300">
@@ -216,10 +331,10 @@ const KidsClubPage = () => {
         {/* FAQ Section */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold text-center mb-8 text-blue-700 dark:text-blue-400">
-            Frequently Asked Questions
+            {content.faq}
           </h2>
           <div className="max-w-3xl mx-auto">
-            {faqItems.map((item, index) => (
+            {content.faqItems.map((item, index) => (
               <div key={index} className="border-b border-gray-200 dark:border-gray-700 last:border-0 transition-colors duration-300">
                 <button
                   onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
@@ -242,12 +357,12 @@ const KidsClubPage = () => {
         <section className="max-w-2xl mx-auto">
           <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md border-2 border-blue-700 dark:border-blue-600 transition-colors duration-300">
             <h2 className="text-2xl font-bold mb-6 text-blue-700 dark:text-blue-300">
-              Join Our Junior Academy
+              {content.joinAcademy}
             </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-gray-700 dark:text-gray-300 mb-2">
-                  Parent/Guardian Name
+                  {content.parentName}
                 </label>
                 <input
                   type="text"
@@ -260,7 +375,7 @@ const KidsClubPage = () => {
               </div>
               <div>
                 <label className="block text-gray-700 dark:text-gray-300 mb-2">
-                  Child&apos;s Name
+                  {content.childName}
                 </label>
                 <input
                   type="text"
@@ -273,7 +388,7 @@ const KidsClubPage = () => {
               </div>
               <div>
                 <label className="block text-gray-700 dark:text-gray-300 mb-2">
-                  Child&apos; Age
+                  {content.childAge}
                 </label>
                 <input
                   type="number"
@@ -286,7 +401,7 @@ const KidsClubPage = () => {
               </div>
               <div>
                 <label className="block text-gray-700 dark:text-gray-300 mb-2">
-                  Medical Information
+                  {content.medicalInfo}
                 </label>
                 <textarea
                   value={formData.medicalInfo}
@@ -301,17 +416,7 @@ const KidsClubPage = () => {
                 disabled={isSubmitting}
                 className="w-full bg-yellow-500 dark:bg-yellow-600 text-blue-900 dark:text-blue-100 py-3 rounded-md hover:bg-yellow-600 dark:hover:bg-yellow-700 transition-colors duration-300 font-bold disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                {isSubmitting ? (
-                  <span className="flex items-center justify-center">
-                    <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"/>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
-                    </svg>
-                    Submitting...
-                  </span>
-                ) : (
-                  "Register Now"
-                )}
+                {isSubmitting ? content.submitting : content.registerNow}
               </button>
             </form>
           </div>

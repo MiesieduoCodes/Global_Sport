@@ -3,6 +3,7 @@ import { useState } from "react";
 import emailjs from "emailjs-com";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useLanguage } from "@/app/context/LanguageContext";
 
 // Hardcoded EmailJS Credentials
 const SERVICE_ID = "service_mofzwum";
