@@ -3,7 +3,7 @@ import "./globals.css";
 import Navbar from "@/app/components/navbar";
 import Footer from "@/app/components/footer";
 import { ThemeProvider } from "@/app/components/theme-provider";
-import { LanguageProvider, useLanguage } from "@/app/context/LanguageContext"; // Import useLanguage
+import { LanguageProvider } from "@/app/context/LanguageContext";
 import React from "react";
 import { metadata } from "./metadata";
 import Head from "next/head";

@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Quote from "@/components/quote"; // Adjust the path if needed
-import { useLanguage } from "@/context/LanguageContext"; // Import the hook
+import { useLanguage } from "@/app/context/LanguageContext";
+
 
 const translations = {
   en: {

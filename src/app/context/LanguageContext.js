@@ -1,10 +1,25 @@
-// context/LanguageContext.js
-import React, { createContext, useContext, useState } from "react";
+"use client";
+import { createContext, useContext, useState, useEffect } from "react";
 
+// Create the context
 const LanguageContext = createContext();
 
+// Provider component
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState("en"); // Default language
+  const [language, setLanguage] = useState("en");
+
+  // Load language from localStorage on mount
+  useEffect(() => {
+    const storedLanguage = localStorage.getItem("language");
+    if (storedLanguage) {
+      setLanguage(storedLanguage);
+    }
+  }, []);
+
+  // Save language to localStorage when it changes
+  useEffect(() => {
+    localStorage.setItem("language", language);
+  }, [language]);
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage }}>
@@ -13,10 +28,7 @@ export const LanguageProvider = ({ children }) => {
   );
 };
 
+// Custom hook to use the LanguageContext
 export const useLanguage = () => {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error("useLanguage must be used within a LanguageProvider");
-  }
-  return context;
+  return useContext(LanguageContext);
 };
