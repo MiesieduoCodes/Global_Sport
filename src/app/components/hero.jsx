@@ -22,7 +22,6 @@ const translations = {
       buttonText: "Be Part of It",
     },
   ],
-
   ru: [
     {
       title: "Почувствуйте страсть футбола",
@@ -40,7 +39,6 @@ const translations = {
       buttonText: "Будьте частью",
     },
   ],
-
   fr: [
     {
       title: "Ressentez la passion du football",
@@ -58,7 +56,6 @@ const translations = {
       buttonText: "Faites-en partie",
     },
   ],
-
   es: [
     {
       title: "Siente la pasión del fútbol",
@@ -76,13 +73,19 @@ const translations = {
       buttonText: "Sé parte de ello",
     },
   ],
-
 };
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { language } = useLanguage();
   const slides = translations[language];
+  
+  // Dynamic images from your storage
+  const images = [
+    "/images/image1.jpg",
+    "/images/image2.jpg",
+    "/images/image3.jpg",
+  ];
 
   const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
 
@@ -98,9 +101,7 @@ const Hero = () => {
           key={currentSlide}
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url(https://images.pexels.com/photos/${
-              [1884574, 262524, 50713][currentSlide]
-            }/pexels-photo-${[1884574, 262524, 50713][currentSlide]}.jpeg)`,
+            backgroundImage: `url(${images[currentSlide]})`,
           }}
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}

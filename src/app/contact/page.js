@@ -139,16 +139,16 @@ const ContactPage = () => {
   };
 
   return (
-    <section className="py-16 pt-24 px-6">
+    <section className="py-16 bg-white dark:bg-gray-700 pt-24 px-6">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10">
         {/* Contact Info Section */}
         <div className="relative">
           <img
-            src="https://images.pexels.com/photos/30393828/pexels-photo-30393828/free-photo-of-competitive-soccer-match-on-a-sunny-day.jpeg?auto=compress&cs=tinysrgb&w=600"
+            src="/images/IMG-20250219-WA0081.jpg"
             alt={content.contactUs}
             className="w-full h-full rounded-2xl object-cover"
           />
-          <h1 className="absolute top-10 left-10 text-white text-4xl font-bold">
+          <h1 className="absolute top-10 left-10 text-black text-4xl font-bold">
             {content.contactUs}
           </h1>
           <div className="absolute bottom-0 p-6 w-full bg-white rounded-lg shadow-lg">
@@ -162,81 +162,90 @@ const ContactPage = () => {
         </div>
 
         {/* Contact Form */}
-        <div className="bg-gray-500 rounded-2xl shadow-lg p-6">
-          <h2 className="text-yellow-500 text-3xl font-semibold mb-6">
-            {content.sendMessage}
-          </h2>
-          <form onSubmit={handleSubmit}>
-            <FormInput
-              name="name"
-              placeholder={content.namePlaceholder}
-              className="outline-0 placeholder:text-black"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-            <FormInput
-              name="email"
-              placeholder={content.emailPlaceholder}
-              className="outline-0 placeholder:text-black"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              type="email"
-            />
-            <FormInput
-              name="phone"
-              placeholder={content.phonePlaceholder}
-              className="outline-0 placeholder:text-black"
-              value={formData.phone}
-              onChange={handleChange}
-              type="tel"
-            />
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 max-w-md mx-auto">
+  <h2 className="text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+    {content.sendMessage}
+  </h2>
+  <form onSubmit={handleSubmit} className="space-y-6">
+    {/* Name Input */}
+    <FormInput
+      name="name"
+      placeholder={content.namePlaceholder}
+      className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
+      value={formData.name}
+      onChange={handleChange}
+      required
+    />
 
-            {/* Contact Method Selection */}
-            <div className="mb-6">
-              <h4 className="text-gray-500 mb-2">
-                {content.preferredMethod}
-              </h4>
-              <div className="flex space-x-6">
-                <RadioInput
-                  id="email"
-                  label={content.email}
-                  name="contactMethod"
-                  value="email"
-                  checked={formData.contactMethod === "email"}
-                  onChange={handleChange}
-                />
-                <RadioInput
-                  id="phone"
-                  label={content.phone}
-                  name="contactMethod"
-                  value="phone"
-                  checked={formData.contactMethod === "phone"}
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
+    {/* Email Input */}
+    <FormInput
+      name="email"
+      placeholder={content.emailPlaceholder}
+      className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
+      value={formData.email}
+      onChange={handleChange}
+      required
+      type="email"
+    />
 
-            <FormInput
-              name="message"
-              placeholder={content.messagePlaceholder}
-              value={formData.message}
-              onChange={handleChange}
-              textarea
-              required
-            />
+    {/* Phone Input */}
+    <FormInput
+      name="phone"
+      placeholder={content.phonePlaceholder}
+      className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
+      value={formData.phone}
+      onChange={handleChange}
+      type="tel"
+    />
 
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="w-full bg-yellow-500 text-white py-3 rounded-lg shadow-lg hover:bg-yellow-600 transition"
-              disabled={isSending}
-            >
-              {isSending ? content.sending : content.sendMessageButton}
-            </button>
-          </form>
-        </div>
+    {/* Contact Method Selection */}
+    <div className="mb-6">
+      <h4 className="text-gray-700 dark:text-gray-300 font-medium mb-4">
+        {content.preferredMethod}
+      </h4>
+      <div className="flex space-x-6">
+        <RadioInput
+          id="email"
+          label={content.email}
+          name="contactMethod"
+          value="email"
+          checked={formData.contactMethod === "email"}
+          onChange={handleChange}
+          className="flex items-center space-x-2 text-gray-800 dark:text-gray-300"
+        />
+        <RadioInput
+          id="phone"
+          label={content.phone}
+          name="contactMethod"
+          value="phone"
+          checked={formData.contactMethod === "phone"}
+          onChange={handleChange}
+          className="flex items-center space-x-2 text-gray-800 dark:text-gray-300"
+        />
+      </div>
+    </div>
+
+    {/* Message Input */}
+    <FormInput
+      name="message"
+      placeholder={content.messagePlaceholder}
+      value={formData.message}
+      onChange={handleChange}
+      textarea
+      className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent placeholder-gray-500 dark:placeholder-gray-400 bg-white dark:bg-gray-700 text-gray-800 dark:text-white"
+      required
+    />
+
+    {/* Submit Button */}
+    <button
+      type="submit"
+      className="w-full bg-yellow-500 text-white py-3 rounded-lg font-semibold shadow-md hover:bg-yellow-600 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+      disabled={isSending}
+    >
+      {isSending ? content.sending : content.sendMessageButton}
+    </button>
+  </form>
+</div>
       </div>
       {/* Toast Container */}
       <ToastContainer position="bottom-right" autoClose={5000} />
