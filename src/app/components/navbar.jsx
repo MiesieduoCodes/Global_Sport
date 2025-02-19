@@ -1,12 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { useTheme } from "next-themes";
 import { ModeToggle } from "@/app/components/mode-toggle";
 import { motion, AnimatePresence } from "framer-motion";
 
-// ✅ Nav Data (Fixed)
+// Navigation data
 const Navdata = {
   navMain: [
     { title: "About", url: "/about" },
@@ -42,22 +43,45 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme } = useTheme();
 
+  // Closes mobile menu and resets dropdown
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    setActiveDropdown(null);
+  };
+
   return (
     <nav className="fixed top-0 w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-md z-50">
       <div className="container mx-auto px-4 lg:px-8 flex justify-between items-center h-16">
-        {/* ✅ Logo */}
-        <Link href="/" className="text-xl font-bold text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-          Global Sports FC
+        {/* Logo with Image */}
+        <Link
+          href="/"
+          className="flex items-center space-x-2"
+          onClick={closeMobileMenu}
+        >
+          <Image
+            src="/images/Logo.jpg"
+            alt="Global Sports FC Logo"
+            width={60}
+            height={60}
+            className="object-contain"
+          />
+          <span className="text-xl font-bold text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            Global Sports FC
+          </span>
         </Link>
 
-        {/* ✅ Desktop Menu */}
+        {/* Desktop Menu */}
         <div className="hidden lg:flex items-center space-x-6">
           {Navdata.navMain.map((item, index) => (
             <div key={index} className="relative group">
               {item.items ? (
                 <>
                   <button
-                    onClick={() => setActiveDropdown(index === activeDropdown ? null : index)}
+                    onClick={() =>
+                      setActiveDropdown(
+                        index === activeDropdown ? null : index
+                      )
+                    }
                     className="flex items-center px-4 py-2 text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
                   >
                     {item.title}{" "}
@@ -79,6 +103,7 @@ const Navbar = () => {
                           <Link
                             key={subIndex}
                             href={subItem.url}
+                            onClick={closeMobileMenu}
                             className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-md transition-colors"
                           >
                             {subItem.title}
@@ -91,6 +116,7 @@ const Navbar = () => {
               ) : (
                 <Link
                   href={item.url}
+                  onClick={closeMobileMenu}
                   className="px-4 py-2 text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
                 >
                   {item.title}
@@ -101,7 +127,7 @@ const Navbar = () => {
           <ModeToggle />
         </div>
 
-        {/* ✅ Mobile Menu Button */}
+        {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="lg:hidden p-2 text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -110,7 +136,7 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* ✅ Mobile Menu */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -125,7 +151,11 @@ const Navbar = () => {
                   {item.items ? (
                     <>
                       <button
-                        onClick={() => setActiveDropdown(index === activeDropdown ? null : index)}
+                        onClick={() =>
+                          setActiveDropdown(
+                            index === activeDropdown ? null : index
+                          )
+                        }
                         className="flex w-full items-center justify-between px-4 py-2 text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
                       >
                         {item.title}{" "}
@@ -146,6 +176,7 @@ const Navbar = () => {
                             <Link
                               key={subIndex}
                               href={subItem.url}
+                              onClick={closeMobileMenu}
                               className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-blue-50 dark:hover:bg-gray-700 rounded-md transition-colors"
                             >
                               {subItem.title}
@@ -157,6 +188,7 @@ const Navbar = () => {
                   ) : (
                     <Link
                       href={item.url}
+                      onClick={closeMobileMenu}
                       className="block px-4 py-2 text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
                     >
                       {item.title}

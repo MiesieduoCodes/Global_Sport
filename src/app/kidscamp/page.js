@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
-import { Footprints, Trophy, Ticket, Shirt, Quote } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Footprints, Trophy, Ticket, Shirt, Quote, Sun } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -14,6 +14,11 @@ const KidsClubPage = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const faqItems = [
     {
@@ -72,6 +77,10 @@ const KidsClubPage = () => {
       setIsSubmitting(false);
     }
   };
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
