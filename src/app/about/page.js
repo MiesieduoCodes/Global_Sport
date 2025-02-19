@@ -233,7 +233,7 @@ export default function JoinOurTeam() {
         <div className="absolute inset-0 bg-blue-200 dark:bg-blue-900 opacity-70 transition-colors duration-300"></div>
         <Image
           alt="Football stadium background"
-          src="images/IMG-20250219-WA0069.jpg"
+          src="/images/IMG-20250219-WA0069.jpg"
           fill
           priority
           className="object-cover"
