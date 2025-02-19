@@ -260,7 +260,7 @@ const KidsClubPage = () => {
               </div>
               <div>
                 <label className="block text-gray-700 dark:text-gray-300 mb-2">
-                  Child's Name
+                  Child&apos;s Name
                 </label>
                 <input
                   type="text"
@@ -273,7 +273,7 @@ const KidsClubPage = () => {
               </div>
               <div>
                 <label className="block text-gray-700 dark:text-gray-300 mb-2">
-                  Child's Age
+                  Child&apos; Age
                 </label>
                 <input
                   type="number"
