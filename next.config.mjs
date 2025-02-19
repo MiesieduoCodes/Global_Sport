@@ -8,5 +8,4 @@ const nextConfig = {
   }
 };
 
-// Export the configuration directly
 export default nextConfig;
