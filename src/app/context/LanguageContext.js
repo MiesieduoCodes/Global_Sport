@@ -1,11 +1,10 @@
-"use client";
-
-import { createContext, useContext, useState } from "react";
+// context/LanguageContext.js
+import React, { createContext, useContext, useState } from "react";
 
 const LanguageContext = createContext();
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState("en");
+  const [language, setLanguage] = useState("en"); // Default language
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage }}>
@@ -14,4 +13,10 @@ export const LanguageProvider = ({ children }) => {
   );
 };
 
-export const useLanguage = () => useContext(LanguageContext);
+export const useLanguage = () => {
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error("useLanguage must be used within a LanguageProvider");
+  }
+  return context;
+};
