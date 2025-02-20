@@ -79,7 +79,7 @@ const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { language } = useLanguage();
   const slides = translations[language];
-  
+
   // Dynamic images from your storage
   const images = [
     "/images/IMG-20250219-WA0077.jpg",
@@ -87,30 +87,34 @@ const Hero = () => {
     "/images/IMG-20250219-WA0069.jpg",
   ];
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
+  const nextSlide = () =>
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
 
   useEffect(() => {
     const timer = setInterval(nextSlide, 5000);
     return () => clearInterval(timer);
   }, []);
 
+  // Pure sliding variants without opacity changes
+  const variants = {
+    enter: { x: "100%" },
+    center: { x: 0 },
+    exit: { x: "-100%" },
+  };
+
   return (
     <section className="relative flex justify-center items-center min-h-screen overflow-hidden">
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         <motion.div
           key={currentSlide}
           className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage: `url(${images[currentSlide]})`,
-          }}
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
+          style={{ backgroundImage: `url(${images[currentSlide]})` }}
+          variants={variants}
+          initial="enter"
+          animate="center"
+          exit="exit"
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent" />
-
           {/* Content Container */}
           <div className="relative h-full flex flex-col justify-center items-center text-center px-4">
             <motion.div
@@ -149,7 +153,9 @@ const Hero = () => {
                   key={index}
                   onClick={() => setCurrentSlide(index)}
                   className={`w-3 h-3 rounded-full transition-colors ${
-                    currentSlide === index ? "bg-yellow-400" : "bg-white/50"
+                    currentSlide === index
+                      ? "bg-yellow-400"
+                      : "bg-yellow-400/50"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />

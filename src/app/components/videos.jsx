@@ -7,16 +7,24 @@ import { useLanguage } from "@/app/context/LanguageContext";
 
 const translations = {
   en: {
-    highlightsTitle: "Highlights & Replays",
+    highlightsTitle: "Training Sessions",
+    introText: "Explore our training sessions where our athletes hone their skills and improve their performance. Watch the techniques and drills that prepare them for success.",
+    callToAction: "Join us in our journey to excellence and stay tuned for more training insights!",
   },
   ru: {
-    highlightsTitle: "Лучшие моменты и повторы",
+    highlightsTitle: "Тренировочные Сессии",
+    introText: "Изучите наши тренировочные сессии, где наши спортсмены оттачивают свои навыки и улучшают свои результаты. Смотрите техники и упражнения, которые готовят их к успеху.",
+    callToAction: "Присоединяйтесь к нам в нашем стремлении к совершенству и следите за новыми тренировочными материалами!",
   },
   fr: {
-    highlightsTitle: "Meilleurs Moments & Replays",
+    highlightsTitle: "Séances d'Entraînement",
+    introText: "Découvrez nos séances d'entraînement où nos athlètes perfectionnent leurs compétences et améliorent leurs performances. Regardez les techniques et les exercices qui les préparent au succès.",
+    callToAction: "Rejoignez-nous dans notre quête d'excellence et restez à l'écoute pour plus d'aperçus d'entraînement!",
   },
   es: {
-    highlightsTitle: "Destacados y Repeticiones",
+    highlightsTitle: "Sesiones de Entrenamiento",
+    introText: "Explora nuestras sesiones de entrenamiento donde nuestros atletas perfeccionan sus habilidades y mejoran su rendimiento. Mira las técnicas y ejercicios que los preparan para el éxito.",
+    callToAction: "Únete a nosotros en nuestro viaje hacia la excelencia y mantente atento a más información sobre entrenamientos.",
   },
 };
 
@@ -35,6 +43,11 @@ export default function VideoCarousel() {
       <h2 className="text-3xl font-bold text-blue-600 dark:text-yellow-400 text-center mb-6">
         {content.highlightsTitle}
       </h2>
+      
+      {/* Introduction Text */}
+      <p className="text-lg text-gray-700 dark:text-gray-300 text-center mb-8 px-4">
+        {content.introText}
+      </p>
 
       <motion.div
         ref={carouselRef}
@@ -87,6 +100,11 @@ export default function VideoCarousel() {
           </motion.div>
         ))}
       </motion.div>
+
+      {/* Call to Action */}
+      <p className="text-lg text-blue-600 dark:text-yellow-400 text-center mt-6">
+        {content.callToAction}
+      </p>
     </div>
   );
 }
