@@ -1,51 +1,74 @@
 [
   {
-    "src": "/videos/video1.mp4",
-    "thumbnail": "/images/thumb1.jpg",
-    "title": "Epic Goal Moments",
+    "src": "/videos/VID-20250219-WA0118.mp4",
+    "thumbnail": "/images/IMG-20250219-WA0107(1).jpg",
+    "title": {
+      "en": "Epic Goal Moments",
+      "ru": "Эпические моменты голов",
+      "fr": "Moments Épiques de Buts",
+      "es": "Momentos Épicos de Gol"
+    },
     "link": "/videos/video1.mp4",
     "date": "2023-08-15"
   },
   {
-    "src": "/videos/video2.mp4",
-    "thumbnail": "/images/thumb2.jpg",
-    "title": "Best Assists Compilation",
+    "src": "/videos/VID-20250219-WA0072.mp4",
+    "thumbnail": "/images/IMG-20250219-WA0117.jpg",
+    "title": {
+      "en": "Best Assists Compilation",
+      "ru": "Лучшие ассисты",
+      "fr": "Compilation des Meilleures Passes",
+      "es": "Compilación de las Mejores Asistencias"
+    },
     "link": "/videos/video2.mp4",
     "date": "2023-08-16"
   },
   {
-    "src": "/videos/video3.mp4",
-    "thumbnail": "/images/thumb3.jpg",
-    "title": "Top Saves of the Year",
+    "src": "/videos/VID-20250219-WA0078.mp4",
+    "thumbnail": "/images/IMG-20250219-WA0123.jpg",
+    "title": {
+      "en": "Top Saves of the Year",
+      "ru": "Лучшие сейвы года",
+      "fr": "Meilleurs Arrêts de l'Année",
+      "es": "Las Mejores Paradas del Año"
+    },
     "link": "/videos/video3.mp4",
     "date": "2023-08-17"
   },
   {
-    "src": "/videos/video4.mp4",
-    "thumbnail": "/images/thumb4.jpg",
-    "title": "Unbelievable Dribbles",
+    "src": "/videos/VID-20250220-WA0014.mp4",
+    "thumbnail": "/images/IMG-20250219-WA0128.jpg",
+    "title": {
+      "en": "Unbelievable Dribbles",
+      "ru": "Невероятные дриблинг",
+      "fr": "Dribbles Incroyables",
+      "es": "Dribles Increíbles"
+    },
     "link": "/videos/video4.mp4",
     "date": "2023-08-18"
   },
   {
     "src": "/videos/video5.mp4",
     "thumbnail": "/images/thumb5.jpg",
-    "title": "Last-Minute Goals",
+    "title": {
+      "en": "Last-Minute Goals",
+      "ru": "Голы в последнюю минуту",
+      "fr": "Buts de Dernière Minute",
+      "es": "Goles de Última Hora"
+    },
     "link": "/videos/video5.mp4",
     "date": "2023-08-19"
   },
   {
     "src": "/videos/video6.mp4",
     "thumbnail": "/images/thumb6.jpg",
-    "title": "Celebrations Gone Wild",
+    "title": {
+      "en": "Celebrations Gone Wild",
+      "ru": "Безумные празднования",
+      "fr": "Célébrations Folles",
+      "es": "Celebraciones Descontroladas"
+    },
     "link": "/videos/video6.mp4",
     "date": "2023-08-20"
-  },
-  {
-    "src": "/videos/video1.mp4",
-    "thumbnail": "/images/thumb1.jpg",
-    "title": "Epic Goal Moments",
-    "link": "/videos/video1.mp4",
-    "date": "2023-08-15"
   }
 ]

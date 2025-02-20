@@ -129,7 +129,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-md z-50">
+    <nav className="fixed p-4 top-0 w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm shadow-md z-50">
       <div className="container mx-auto px-4 lg:px-8 flex justify-between items-center h-16">
         <Link
           href="/"
@@ -288,7 +288,7 @@ const Navbar = () => {
               <div className="px-4 py-2">
                 <ModeToggle />
                  {/* Language Selector */}
-                 <select
+    <select
             value={language}
             onChange={(e) => handleLanguageChange(e.target.value)}
             className="ml-4 p-2 border rounded"
