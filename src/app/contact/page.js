@@ -101,6 +101,7 @@ const ContactPage = () => {
     message: "",
     contactMethod: "email",
   });
+  
   const [isSending, setIsSending] = useState(false);
   const { language } = useLanguage(); // Get the current language from context
   const content = translations[language] || translations.en; // Default to English
