@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Quote from "@/components/quote"; // Adjust the path if needed
+import Quote from "@/app/components/quote"; // Adjust the path if needed
 import { useLanguage } from "@/app/context/LanguageContext";
 
 
